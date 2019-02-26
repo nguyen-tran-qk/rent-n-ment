@@ -1,0 +1,37 @@
+<!--
+  Generated template for the ProductDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="rojito">
+    <ion-title>{{product.product}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-card>
+    <ion-thumbnail item-start>
+      <img [src]="product.image" />
+    </ion-thumbnail>
+    <ion-card-content>
+      <ion-card-title align="center">
+        {{product.product}}
+      </ion-card-title>
+      <p>
+        {{product.longDescription}}
+      </p>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card-title>
+            $ {{ product.price | number: 0 }}
+          </ion-card-title>
+        </ion-col>
+        <ion-col col-6>
+          <div align="center"><button ion-button secondary>Select<a href="tel:+573122713768"></a></button> </div>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

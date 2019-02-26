@@ -1,14 +1,23 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="rojito">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Rent and Mend</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+</ion-content>
+
+<ion-content class="card-background-page">
+
+  <ion-card *ngFor="let category of categories" (click)="pushCategory(category)">
+    <!--?.slice().reverse()-->
+    <img [src]="category.image" />
+
+    <div class="card-category">{{category.category}}</div>
+    <div class="card-subcategory">{{category.subcategory}}</div>
+  </ion-card>
+
 </ion-content>
