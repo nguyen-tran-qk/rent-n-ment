@@ -4,6 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Rent and Mend</ion-title>
+    <ion-buttons end *ngIf="!mediaProvider.loggedIn">
+      <button ion-button end color="danger" (click)="signIn()">
+        <ion-icon name="log-in"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

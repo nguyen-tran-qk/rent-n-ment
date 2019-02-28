@@ -8,16 +8,23 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProductsPage } from '../pages/products/products';
 import { ProductDetailsPage } from '../pages/product-details/product-details';
+import { LoginRegisterPage } from '../pages/login-register/login-register';
+import { UserPage } from '../pages/user/user';
+import { MediaProvider } from '../providers/media/media';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ProductsPage,
-    ProductDetailsPage
+    ProductDetailsPage,
+    LoginRegisterPage,
+    UserPage,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -25,12 +32,15 @@ import { ProductDetailsPage } from '../pages/product-details/product-details';
     MyApp,
     HomePage,
     ProductsPage,
-    ProductDetailsPage
+    ProductDetailsPage,
+    LoginRegisterPage,
+    UserPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    MediaProvider,
   ]
 })
 export class AppModule {}
