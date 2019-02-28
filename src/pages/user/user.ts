@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
 import { HomePage } from '../home/home';
+import { Observable } from 'rxjs';
+import { Media } from '../../interfaces/interface';
 
 /**
  * Generated class for the LogoutPage page.
@@ -16,13 +18,49 @@ import { HomePage } from '../home/home';
 })
 export class UserPage {
 
+  picArray: Observable<Media[]>;
+
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
-    public mediaProvider: MediaProvider) {
+    public mediaProvider: MediaProvider, public alertCtrl: AlertController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LogoutPage');
+  getMyFiles() {
+    this.picArray = this.mediaProvider.getFilesByUser(
+      localStorage.getItem('token'));
+  }
+
+  ionViewDidEnter() {
+    this.getMyFiles();
+  }
+
+  doDelete(id) {
+    this.mediaProvider.delete(id, localStorage.getItem('token')).
+      subscribe(response => {
+        this.getMyFiles();
+      });
+  }
+
+  deleteAFile(id) {
+    const alert = this.alertCtrl.create({
+      title: 'Notice!',
+      subTitle: 'Do you really want to delete it?',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.doDelete(id);
+          },
+        },
+        'Cancel'],
+    });
+    alert.present().catch();
+  }
+
+  showFile(file_id) {
+  }
+
+  modifyFile(id) {
   }
 
   logout() {

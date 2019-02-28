@@ -40,5 +40,20 @@
       </ion-card-content>
     </ion-item>
   </ion-card>
+
+    <ion-item *ngFor="let pic of picArray | async">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-thumbnail>
+              <img [src]="this.mediaProvider.mediaFilePath + (pic.file_id | thumbnail: 'medium' | async)"
+                   [alt]="pic.title" (click)="showFile(pic.file_id)"><br>
+              <button ion-button><ion-icon name="create" (click)="modifyFile(pic.file_id)"></ion-icon></button>
+              <button ion-button><ion-icon name="trash" (click)="deleteAFile(pic.file_id)"></ion-icon></button>
+            </ion-thumbnail>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
 </ion-content>
 

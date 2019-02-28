@@ -64,4 +64,25 @@ export class MediaProvider {
     return this.http.post<LoginResponse>(this.mediaApi + 'login', user,
       httpOptions);
   }
+
+  getFilesByUser(token) {
+    const setting = {
+      headers: new HttpHeaders().set('x-access-token', token),
+    };
+    return this.http.get<Media[]>(this.mediaApi + 'media/user', setting);
+  }
+
+  delete(id, token) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token', token),
+    };
+    return this.http.delete(this.mediaApi + 'media/' + id, settings);
+  }
+
+  modify(data, id, token) {
+    const setting = {
+      headers: new HttpHeaders().set('x-access-token', token),
+    };
+    return this.http.put(this.mediaApi + 'media/' + id, data, setting);
+  }
 }
