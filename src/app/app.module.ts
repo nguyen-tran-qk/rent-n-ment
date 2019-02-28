@@ -12,6 +12,8 @@ import { LoginRegisterPage } from '../pages/login-register/login-register';
 import { UserPage } from '../pages/user/user';
 import { MediaProvider } from '../providers/media/media';
 import { HttpClientModule } from '@angular/common/http';
+import { PipesModule } from '../pipes/pipes.module';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    PipesModule,
+    PinchZoomModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

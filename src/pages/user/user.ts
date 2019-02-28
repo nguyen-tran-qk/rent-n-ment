@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MediaProvider } from '../../providers/media/media';
+import { HomePage } from '../home/home';
 
 /**
- * Generated class for the UserPage page.
+ * Generated class for the LogoutPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,11 +16,18 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class UserPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    public mediaProvider: MediaProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserPage');
+    console.log('ionViewDidLoad LogoutPage');
   }
 
+  logout() {
+    localStorage.clear();
+    this.mediaProvider.loggedIn = false;
+    this.navCtrl.push(HomePage).catch();
+  }
 }

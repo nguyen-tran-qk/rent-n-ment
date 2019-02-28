@@ -1,4 +1,3 @@
-
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
@@ -8,7 +7,7 @@ import {
   userExists,
 } from '../../interfaces/interface';
 import { AlertController } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { UserPage } from '../user/user';
 
 /**
  * Generated class for the LoginRegisterPage page.
@@ -108,7 +107,7 @@ export class LoginRegisterPage {
         localStorage.setItem('userId', response.user.user_id.toString());
 
         // move to the home page (use navCtrl)
-        this.navCtrl.push(HomePage).catch();
+        this.navCtrl.push(UserPage).catch();
       },
       error => {
         console.log(error);

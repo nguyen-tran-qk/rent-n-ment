@@ -28,7 +28,7 @@ export class HomePage {
   }
 
   pushCategory(category) {
-    this.navCtrl.push(ProductsPage, { category });
+    this.navCtrl.push(ProductsPage, { category }).catch();
   }
 
   signIn() {

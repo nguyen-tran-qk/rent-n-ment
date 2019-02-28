@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
-  LoginResponse,
+  LoginResponse, Media,
   RegisterResponse,
   User,
 } from '../../interfaces/interface';
@@ -17,6 +17,9 @@ export class MediaProvider {
 
   mediaApi = ' http://media.mw.metropolia.fi/wbma/';
 
+  mediaFilePath = 'http://media.mw.metropolia.fi/wbma/uploads/';
+
+
   loggedIn = false;
 
   user: User = null;
@@ -24,6 +27,15 @@ export class MediaProvider {
 
   constructor(public http: HttpClient) {
     console.log('Hello MediaProvider Provider');
+  }
+
+  getSingleMedia(id) {
+    return this.http.get<Media>(this.mediaApi + 'media/' + id);
+  }
+
+  getFilesByTag(tag) {
+    // single file
+    return this.http.get<Media[]>(this.mediaApi + 'tags/' + tag);
   }
 
   checkUsers(username) {
