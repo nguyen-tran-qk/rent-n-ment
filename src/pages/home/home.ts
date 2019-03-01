@@ -9,7 +9,32 @@ import { MediaProvider } from '../../providers/media/media';
   templateUrl: 'home.html',
 })
 export class HomePage {
-  categories = [];
+  categories = [
+    {
+      image: 'assets/imgs/clothing.jpg',
+      name: 'Clothing'
+    },
+    {
+      image: 'assets/imgs/vehicles.jpg',
+      name: 'Vehicles'
+    },
+    {
+      image: 'assets/imgs/electronics.jpg',
+      name: 'Electronics'
+    },
+    {
+      image: 'assets/imgs/stationary.jpg',
+      name: 'Stationary'
+    },
+    {
+      image: 'assets/imgs/sport.jpg',
+      name: 'Sports'
+    },
+    {
+      image: 'assets/imgs/others.jpg',
+      name: 'Others'
+    },
+  ];
 
   pushPage: any;
   imagen: string;
@@ -18,13 +43,6 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController, public mediaProvider: MediaProvider) {
-    this.categories = [
-      {
-        image: 'http://placehold.it/300x200',
-        category: 'Mobile phones',
-        subcategory: 'Product Catalog',
-      },
-    ];
   }
 
   pushCategory(category) {

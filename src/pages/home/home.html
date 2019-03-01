@@ -15,14 +15,14 @@
 <ion-content padding>
 </ion-content>
 
-<ion-content class="card-background-page">
+<ion-content class="card-background-page categories">
 
   <ion-card *ngFor="let category of categories" (click)="pushCategory(category)">
-    <!--?.slice().reverse()-->
     <img [src]="category.image" />
-
-    <div class="card-category">{{category.category}}</div>
-    <div class="card-subcategory">{{category.subcategory}}</div>
+    <div class="title">
+      <div class="card-title">{{category.name}}</div>
+      <!-- <div class="card-subtitle">{{category.subcategory}}</div> -->
+    </div>
   </ion-card>
 
 </ion-content>
