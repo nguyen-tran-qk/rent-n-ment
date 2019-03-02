@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ProductDetailsPage } from '../product-details/product-details';
+import { ProductProvider } from '../../providers/product/product';
 
 /**
  * Generated class for the ProductsPage page.
@@ -15,54 +16,27 @@ import { ProductDetailsPage } from '../product-details/product-details';
 })
 export class ProductsPage {
   products = [];
-
+  mediaFilePath = 'http://media.mw.metropolia.fi/wbma/uploads/';
   image: string;
   product: string;
   description: string;
   price: number;
 
-  category;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.category = navParams.data.category;
-
-    this.products = [
-      {
-        image: 'http://placehold.it/300x300',
-        product: 'iPhone X',
-        description: 'Description Product1',
-        longDesciption:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deleniti voluptate quos, dolore, pariatur iusto ducimus qui harum ea, quam at repudiandae recusandae non. Quos ea illo corporis nesciunt amet.',
-        price: 3799000
-      },
-
-      {
-        image: 'http://placehold.it/300x300',
-        product: 'Samsung Galaxy S9',
-        description: 'Description Product1',
-        longDesciption:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deleniti voluptate quos, dolore, pariatur iusto ducimus qui harum ea, quam at repudiandae recusandae non. Quos ea illo corporis nesciunt amet.',
-        price: 2999900
-      },
-
-      {
-        image: 'http://placehold.it/300x300',
-        product: 'Moto G6',
-        description: 'Description Product1',
-        longDesciption:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deleniti voluptate quos, dolore, pariatur iusto ducimus qui harum ea, quam at repudiandae recusandae non. Quos ea illo corporis nesciunt amet.',
-        price: 669900
-      },
-
-      {
-        image: 'http://placehold.it/300x300',
-        product: 'Xiaomi Redmi 5 DS',
-        description: 'Description Product1',
-        longDesciption:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium deleniti voluptate quos, dolore, pariatur iusto ducimus qui harum ea, quam at repudiandae recusandae non. Quos ea illo corporis nesciunt amet.',
-        price: 5999000
-      }
-    ];
+  constructor(public navCtrl: NavController, public navParams: NavParams, private productProvider: ProductProvider) {
+    this.productProvider.getProductByCategory(navParams.data.categoryKey).subscribe(data => {
+      this.products = data.map(item => {
+        const image = this.mediaFilePath + item.filename;
+        const splitedDescription = item.description.split('[meta]');
+        const description = splitedDescription[0];
+        const priceData = JSON.parse(splitedDescription[1]);
+        return {
+          ...item,
+          image,
+          description,
+          price: priceData.price
+        };
+      });
+    });
   }
 
   ionViewDidLoad() {

@@ -44,3 +44,9 @@ export interface userExists {
   available: boolean;
 
 }
+
+export interface Product extends Media {
+  tag_id?: number;
+  tag?: string;
+  price?: number | string;
+}

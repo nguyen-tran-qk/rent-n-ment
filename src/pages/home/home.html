@@ -17,7 +17,7 @@
 
 <ion-content class="card-background-page categories">
 
-  <ion-card *ngFor="let category of categories" (click)="pushCategory(category)">
+  <ion-card *ngFor="let category of categories" (click)="pushCategory(category.key)">
     <img [src]="category.image" />
     <div class="title">
       <div class="card-title">{{category.name}}</div>

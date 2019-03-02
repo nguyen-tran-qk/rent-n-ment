@@ -1,3 +1,13 @@
 page-products {
-
+  .products-list {
+    h2.product-title {
+      font-weight: bold;
+    }
+    ion-thumbnail {
+      img {
+        width: auto;
+        margin: 0 auto;
+      }
+    }
+  }
 }

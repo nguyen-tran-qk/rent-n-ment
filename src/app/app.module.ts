@@ -14,6 +14,7 @@ import { MediaProvider } from '../providers/media/media';
 import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../pipes/pipes.module';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
+import { ProductProvider } from '../providers/product/product';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MediaProvider,
+    ProductProvider,
   ]
 })
 export class AppModule {}

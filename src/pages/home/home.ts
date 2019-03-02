@@ -9,30 +9,37 @@ import { MediaProvider } from '../../providers/media/media';
   templateUrl: 'home.html',
 })
 export class HomePage {
+  categoryKeyPrefix = 'rentnmend.categories';
   categories = [
     {
       image: 'assets/imgs/clothing.jpg',
-      name: 'Clothing'
+      name: 'Clothing',
+      key: this.categoryKeyPrefix + '.clothing'
     },
     {
       image: 'assets/imgs/vehicles.jpg',
-      name: 'Vehicles'
+      name: 'Vehicles',
+      key: this.categoryKeyPrefix + '.vehicles'
     },
     {
       image: 'assets/imgs/electronics.jpg',
-      name: 'Electronics'
+      name: 'Electronics',
+      key: this.categoryKeyPrefix + '.electronics'
     },
     {
       image: 'assets/imgs/stationary.jpg',
-      name: 'Stationary'
+      name: 'Stationary',
+      key: this.categoryKeyPrefix + '.stationary'
     },
     {
       image: 'assets/imgs/sport.jpg',
-      name: 'Sports'
+      name: 'Sports',
+      key: this.categoryKeyPrefix + '.sports'
     },
     {
       image: 'assets/imgs/others.jpg',
-      name: 'Others'
+      name: 'Others',
+      key: this.categoryKeyPrefix + '.others'
     },
   ];
 
@@ -45,8 +52,8 @@ export class HomePage {
     public navCtrl: NavController, public mediaProvider: MediaProvider) {
   }
 
-  pushCategory(category) {
-    this.navCtrl.push(ProductsPage, { category }).catch();
+  pushCategory(categoryKey: string) {
+    this.navCtrl.push(ProductsPage, { categoryKey }).catch();
   }
 
   signIn() {
