@@ -1,0 +1,47 @@
+<!--
+  Generated template for the AddProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add your new product</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form novalidate (ngSubmit)="addProduct()" #f="ngForm">
+    <div>
+      <input id="imageInput" type="file" accept=".jpg, .jpeg, .png, .mp4" (change)="getImage($event)" hidden />
+      <button ion-button type="button" (click)="browseImage()">Upload product image</button>
+      <img *ngIf="productImagePreview" [src]="productImagePreview" />
+    </div>
+    <div>
+      <ion-item>
+        <ion-label>Product category</ion-label>
+        <ion-select [(ngModel)]="model.category" name="category" [selectOptions]="selectOptions">
+          <ion-option *ngFor="let category of categories" [value]="category.key">{{ category.name }}</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div>
+      <input type="text" name="productName" placeholder="Product name" [(ngModel)]="model.productName" required minlength="6" #productName="ngModel"/>
+      <p *ngIf="productName.dirty && productName.errors?.required">Product name is required</p>
+      <p *ngIf="productName.errors?.minlength">Product name must be at least 6 characters long</p>
+    </div>
+    <div>
+      <textarea name="description" rows="3" placeholder="Description" [(ngModel)]="model.description" required minlength="10" #description="ngModel"></textarea>
+      <p *ngIf="description.dirty && description.errors?.required">Description is required</p>
+      <p *ngIf="description.errors?.minlength">Description must be at least 10 characters long</p>
+    </div>
+    <div>
+      <input type="number" name="price" placeholder="Price" [(ngModel)]="model.price" required min="2" #price="ngModel"/>
+      <p *ngIf="price.dirty && price.errors?.required">Price is required</p>
+      <p *ngIf="price.errors?.min">Price must be at least 1 EUR</p>
+    </div>
+    <div>
+      <button ion-button color="primary" block type="submit" [disabled]="f.invalid || !productImage">Submit</button>
+    </div>
+  </form>
+</ion-content>

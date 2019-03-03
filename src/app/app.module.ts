@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../pipes/pipes.module';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { ProductProvider } from '../providers/product/product';
+import { AddProductPage } from '../pages/add-product/add-product';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProductProvider } from '../providers/product/product';
     ProductDetailsPage,
     LoginRegisterPage,
     UserPage,
+    AddProductPage,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { ProductProvider } from '../providers/product/product';
     ProductDetailsPage,
     LoginRegisterPage,
     UserPage,
+    AddProductPage,
   ],
   providers: [
     StatusBar,

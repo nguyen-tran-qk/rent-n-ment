@@ -39,7 +39,7 @@ export interface RegisterResponse {
 
 }
 
-export interface userExists {
+export interface UserExists {
   username: string;
   available: boolean;
 

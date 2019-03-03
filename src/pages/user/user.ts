@@ -4,6 +4,7 @@ import { MediaProvider } from '../../providers/media/media';
 import { HomePage } from '../home/home';
 import { Observable } from 'rxjs';
 import { Media } from '../../interfaces/interface';
+import { AddProductPage } from '../add-product/add-product';
 
 /**
  * Generated class for the LogoutPage page.
@@ -58,9 +59,15 @@ export class UserPage {
   }
 
   showFile(file_id) {
+    return;
   }
 
   modifyFile(id) {
+    return;
+  }
+
+  openAddProductPage() {
+    this.navCtrl.push(AddProductPage);
   }
 
   logout() {

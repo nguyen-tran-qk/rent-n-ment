@@ -9,5 +9,15 @@ page-products {
         margin: 0 auto;
       }
     }
+    .product-description {
+      height: 36px;
+      width: 90%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      span {
+        white-space: pre-wrap;
+      }
+    }
   }
 }

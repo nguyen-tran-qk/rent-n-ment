@@ -1,12 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
+import { LoginResponse, RegisterResponse, UserExists } from '../../interfaces/interface';
 import { MediaProvider } from '../../providers/media/media';
-import {
-  LoginResponse,
-  RegisterResponse,
-  userExists,
-} from '../../interfaces/interface';
-import { AlertController } from 'ionic-angular';
 import { UserPage } from '../user/user';
 
 /**
@@ -59,7 +54,7 @@ export class LoginRegisterPage {
 
   checkUserExists() {
     this.mediaProvider.checkUsers(this.user.username).
-      subscribe((data: userExists) => {
+      subscribe((data: UserExists) => {
         console.log(data.available);
         if (!data.available) {
           this.userAlert = true;

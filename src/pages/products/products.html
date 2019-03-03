@@ -15,21 +15,19 @@
 
 <ion-content padding class="products-list">
   <ion-list>
-    <ion-item *ngFor="let product of products">
+    <ion-item *ngFor="let product of products" (click)="pushDescription(product)">
       <ion-thumbnail item-start>
         <img (click)="pushDescription(product)" [src]="product.image" />
       </ion-thumbnail>
       <h2 class="product-title">{{product.title}}</h2>
-      <h3>{{product.description}}</h3><br>
+      <div class="product-description">
+        <span>{{product.description}}</span>
+      </div>
       <ion-row>
         <ion-col col-6>
           <p> € {{ product.price | number: 0 }}</p>
         </ion-col>
-        <!-- <ion-col col-6>
-          <p>{{category.category}}</p>
-        </ion-col> -->
       </ion-row>
-      <button ion-button clear item-end (click)="pushDescription(product)">View</button>
     </ion-item>
   </ion-list>
 </ion-content>

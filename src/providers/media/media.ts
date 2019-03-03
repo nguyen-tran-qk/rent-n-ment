@@ -29,6 +29,13 @@ export class MediaProvider {
     console.log('Hello MediaProvider Provider');
   }
 
+  getCurrentUser() {
+    const setting = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+    };
+    return this.http.get<User>(this.mediaApi + 'users/user', setting);
+  }
+
   getSingleMedia(id) {
     return this.http.get<Media>(this.mediaApi + 'media/' + id);
   }

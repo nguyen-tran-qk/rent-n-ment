@@ -1,10 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
-  LoginResponse, Media,
   Product,
-  RegisterResponse,
-  User,
 } from '../../interfaces/interface';
 
 /*
@@ -28,4 +25,17 @@ export class ProductProvider {
     return this.http.get<Product[]>(this.API + '/tags/' + categoryName);
   }
 
+  addProduct(data: FormData) {
+    const setting = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+    };
+    return this.http.post<{ message: string, file_id: number }>(this.API + '/media', data, setting);
+  }
+
+  addProductToCategory(data: { file_id: number, tag: string }) {
+    const setting = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+    };
+    return this.http.post<{ message: string, tag_id: number }>(this.API + '/tags', data, setting);
+  }
 }
