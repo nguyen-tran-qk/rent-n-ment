@@ -9,22 +9,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title text-center>Profile</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-navbar>
-
-  <ion-buttons end>
-    <button ion-button block color="secondary" (click)="logout()">Logout
-      <ion-icon color="primary" name="log-out"></ion-icon>
-    </button>
-  </ion-buttons>
 </ion-header>
 <ion-content padding>
   <ion-card>
-
     <ion-avatar>
       <img [src]="mediaProvider.mediaFilePath + ('profile' | getUser | async| thumbnail | async)">
     </ion-avatar>
-
     <ion-item>
       <ion-card-content>
 
@@ -39,7 +31,6 @@
         <p text-center="">Email:
           {{ mediaProvider.user?.email}}
         </p>
-
       </ion-card-content>
     </ion-item>
   </ion-card>
@@ -54,7 +45,7 @@
             <img [src]="this.mediaProvider.mediaFilePath + (pic.file_id | thumbnail: 'medium' | async)"
                   [alt]="pic.title" (click)="showFile(pic.file_id)"><br>
             <button ion-button><ion-icon name="create" (click)="modifyFile(pic.file_id)"></ion-icon></button>
-            <button ion-button><ion-icon name="trash" (click)="deleteAFile(pic.file_id)"></ion-icon></button>
+            <button ion-button><ion-icon name="trash" (click)="deleteProduct(pic.file_id)"></ion-icon></button>
           </ion-thumbnail>
         </ion-col>
       </ion-row>

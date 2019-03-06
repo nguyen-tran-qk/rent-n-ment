@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Media } from '../../interfaces/interface';
 import { AddProductPage } from '../add-product/add-product';
 import { ModifyPage } from '../modify/modify';
+import { ProductProvider } from '../../providers/product/product';
 
 /**
  * Generated class for the LogoutPage page.
@@ -24,7 +25,8 @@ export class UserPage {
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
-    public mediaProvider: MediaProvider, public alertCtrl: AlertController) {
+    public mediaProvider: MediaProvider, public alertCtrl: AlertController,
+    public productProvider: ProductProvider) {
   }
 
   getMyFiles() {
@@ -37,16 +39,16 @@ export class UserPage {
   }
 
   doDelete(id) {
-    this.mediaProvider.delete(id, localStorage.getItem('token')).
-      subscribe(response => {
+    this.productProvider.deleteProduct(id)
+      .subscribe(() => {
         this.getMyFiles();
       });
   }
 
-  deleteAFile(id) {
+  deleteProduct(id) {
     const alert = this.alertCtrl.create({
       title: 'Notice!',
-      subTitle: 'Do you really want to delete it?',
+      subTitle: 'Do you really want to delete this product?',
       buttons: [
         {
           text: 'OK',

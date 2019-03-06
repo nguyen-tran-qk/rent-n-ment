@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { categories } from '../../constants';
+import { PRODUCT_STATUS, categories } from '../../constants';
 import { ProductProvider } from '../../providers/product/product';
 import { UserPage } from '../user/user';
 
@@ -10,6 +10,7 @@ class AddProductForm {
     public price = '',
     public description = '',
     public category = '',
+    public purpose = '',
   ) {}
 }
 
@@ -33,6 +34,9 @@ export class AddProductPage {
   selectOptions = {
     title: 'Select a category'
   };
+  purposeSelectOptions = {
+    title: 'This product is for...'
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private productProvider: ProductProvider) {
     console.log(this.categories);
@@ -55,7 +59,6 @@ export class AddProductPage {
         this.productImagePreview = (evt.target as any).result;
       };
       reader.readAsDataURL(this.productImage);
-      console.log(this.productImage);
     }
   }
 
@@ -63,7 +66,7 @@ export class AddProductPage {
     if (this.productImage && this.form.valid) {
       const formData = new FormData();
       formData.append('title', this.model.productName);
-      formData.append('description', this.model.description + '[meta]' + JSON.stringify({ price: this.model.price }));
+      formData.append('description', this.model.description + '[meta]' + JSON.stringify({ price: this.model.price, status: PRODUCT_STATUS.AVAILABLE }));
       formData.append('file', this.productImage);
       this.productProvider.addProduct(formData).subscribe((data) => {
         if (data.file_id) {
@@ -73,7 +76,15 @@ export class AddProductPage {
           };
           this.productProvider.addProductToCategory(postData).subscribe(result => {
             if (result.tag_id) {
-              this.navCtrl.setRoot(UserPage);
+              const purposeTagData = {
+                file_id: data.file_id,
+                tag: this.model.purpose
+              };
+              this.productProvider.addProductToCategory(purposeTagData).subscribe(res => {
+                if (res.tag_id) {
+                  this.navCtrl.setRoot(UserPage);
+                }
+              });
             }
           });
         }
