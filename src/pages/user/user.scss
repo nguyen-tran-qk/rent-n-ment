@@ -1,12 +1,19 @@
 page-user {
 
   ion-avatar img {
+
     width: 165px;
     height: 160px;
     margin: auto;
+    padding: 3px;
+    border-radius: 30px;
+
   }
+
   img {
     object-fit: cover;
+    border: solid black 0px;
+
   }
 
   ion-thumbnail {
@@ -20,4 +27,13 @@ page-user {
       text-shadow: 0px 0px 3px #000000;;
     }
   }
+
+  ion-card {
+    padding: 3px;
+    box-shadow: none;
+  }
+  ion-card-title {
+    text-align: start;
+  }
+
 }
