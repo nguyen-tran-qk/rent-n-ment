@@ -14,11 +14,14 @@ import {
 export class ProductProvider {
 
   API = ' http://media.mw.metropolia.fi/wbma';
-
   mediaFilePath = 'http://media.mw.metropolia.fi/wbma/uploads/';
+  setting: {};
 
   constructor(public http: HttpClient) {
     console.log('Hello ProductProvider Provider');
+    this.setting = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+    };
   }
 
   getProductByCategory(categoryName: string) {
@@ -26,16 +29,14 @@ export class ProductProvider {
   }
 
   addProduct(data: FormData) {
-    const setting = {
-      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
-    };
-    return this.http.post<{ message: string, file_id: number }>(this.API + '/media', data, setting);
+    return this.http.post<{ message: string, file_id: number }>(this.API + '/media', data, this.setting);
   }
 
   addProductToCategory(data: { file_id: number, tag: string }) {
-    const setting = {
-      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
-    };
-    return this.http.post<{ message: string, tag_id: number }>(this.API + '/tags', data, setting);
+    return this.http.post<{ message: string, tag_id: number }>(this.API + '/tags', data, this.setting);
+  }
+
+  deleteProduct(id: number) {
+    return this.http.delete(this.API + '/media/' + id, this.setting);
   }
 }

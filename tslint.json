@@ -11,7 +11,8 @@
     "no-unused-variable": [
       true
     ],
-    "no-var-requires": false
+    "no-var-requires": false,
+    "linebreak-style": [true, "CRLF"],
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"

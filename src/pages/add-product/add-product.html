@@ -26,6 +26,16 @@
       </ion-item>
     </div>
     <div>
+      <ion-item>
+        <ion-label>Select your purpose</ion-label>
+        <ion-select [(ngModel)]="model.purpose" name="purpose" [selectOptions]="purposeSelectOptions">
+          <ion-option value='rentnmend.purpose.rent'>Rent</ion-option>
+          <ion-option value='rentnmend.purpose.mend'>Mend</ion-option>
+          <ion-option value='rentnmend.purpose.sale'>Sale</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div>
       <input type="text" name="productName" placeholder="Product name" [(ngModel)]="model.productName" required minlength="6" #productName="ngModel"/>
       <p *ngIf="productName.dirty && productName.errors?.required">Product name is required</p>
       <p *ngIf="productName.errors?.minlength">Product name must be at least 6 characters long</p>

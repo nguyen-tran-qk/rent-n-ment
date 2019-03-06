@@ -49,4 +49,5 @@ export interface Product extends Media {
   tag_id?: number;
   tag?: string;
   price?: number | string;
+  status?: number;
 }

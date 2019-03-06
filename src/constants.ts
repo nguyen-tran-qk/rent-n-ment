@@ -31,3 +31,11 @@ export const categories = [
     key: categoryKeyPrefix + '.others'
   },
 ];
+
+export const PRODUCT_STATUS = {
+  SOLD: -1,
+  UNAVAILABLE: 0,
+  AVAILABLE: 1,
+  RENTING: 2,
+  MENDING: 3,
+};

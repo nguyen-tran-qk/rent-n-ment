@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Segment } from 'ionic-angular';
 import { ProductDetailsPage } from '../product-details/product-details';
 import { ProductProvider } from '../../providers/product/product';
+import { Product } from '../../interfaces/interface';
 
 /**
  * Generated class for the ProductsPage page.
@@ -15,12 +16,14 @@ import { ProductProvider } from '../../providers/product/product';
   templateUrl: 'products.html',
 })
 export class ProductsPage {
-  products = [];
+  products: Product[] = [];
+  allProducts: Product[] = [];
   mediaFilePath = 'http://media.mw.metropolia.fi/wbma/uploads/';
   image: string;
   product: string;
   description: string;
   price: number;
+  purpose = 'all';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private productProvider: ProductProvider) {
     this.productProvider.getProductByCategory(navParams.data.categoryKey).subscribe(data => {
@@ -28,14 +31,16 @@ export class ProductsPage {
         const image = this.mediaFilePath + item.filename;
         const splitedDescription = item.description.split('[meta]');
         const description = splitedDescription[0];
-        const priceData = JSON.parse(splitedDescription[1]);
+        const metaData = JSON.parse(splitedDescription[1]);
         return {
           ...item,
           image,
           description,
-          price: priceData.price
+          price: metaData.price,
+          status: metaData.status
         };
       });
+      this.allProducts = [...this.products];
     });
   }
 
@@ -45,5 +50,18 @@ export class ProductsPage {
 
   pushDescription(product) {
     this.navCtrl.push(ProductDetailsPage, { product });
+  }
+
+  filterByPurpose($event: Segment) {
+    this.purpose = $event.value;
+    if (this.purpose === 'all') {
+      this.products = [...this.allProducts];
+    } else {
+      this.productProvider.getProductByCategory(this.purpose).subscribe(data => {
+        this.products = this.allProducts.filter(item => {
+          return data.find(product => product.file_id === item.file_id);
+        });
+      });
+    }
   }
 }
