@@ -16,6 +16,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { ProductProvider } from '../providers/product/product';
 import { AddProductPage } from '../pages/add-product/add-product';
+import { ModifyPage } from '../pages/modify/modify';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AddProductPage } from '../pages/add-product/add-product';
     LoginRegisterPage,
     UserPage,
     AddProductPage,
+    ModifyPage,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { AddProductPage } from '../pages/add-product/add-product';
     LoginRegisterPage,
     UserPage,
     AddProductPage,
+    ModifyPage,
   ],
   providers: [
     StatusBar,

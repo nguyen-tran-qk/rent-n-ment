@@ -5,6 +5,7 @@ import { HomePage } from '../home/home';
 import { Observable } from 'rxjs';
 import { Media } from '../../interfaces/interface';
 import { AddProductPage } from '../add-product/add-product';
+import { ModifyPage } from '../modify/modify';
 
 /**
  * Generated class for the LogoutPage page.
@@ -63,11 +64,12 @@ export class UserPage {
   }
 
   modifyFile(id) {
-    return;
+    this.navCtrl.push(ModifyPage, { fileId: id }).catch();
+
   }
 
   openAddProductPage() {
-    this.navCtrl.push(AddProductPage);
+    this.navCtrl.push(AddProductPage).catch();
   }
 
   logout() {
