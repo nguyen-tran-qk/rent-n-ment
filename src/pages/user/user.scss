@@ -1,13 +1,18 @@
 page-user {
 
-  ion-avatar img {
+  ion-avatar {
+
     width: 165px;
     height: 160px;
     margin: auto;
+    img {
+      object-fit: cover;
+      border: solid black 0.5px;
+    }
   }
-  img {
-    object-fit: cover;
-  }
+
+
+
 
   ion-thumbnail {
     position: relative;
@@ -20,4 +25,21 @@ page-user {
       text-shadow: 0px 0px 3px #000000;;
     }
   }
+  ion-content {
+    padding: 0px;
+  }
+  ion-card {
+    padding: 10px;
+    box-shadow: none;
+  }
+  ion-card-title {
+    text-align: start;
+    padding: 2px 0 0 0;
+    background-color: #2ec95c;
+  }
+  ion-card-content {
+   text-align-last: start;
+    background-color: #2ec95c;
+  }
+
 }
