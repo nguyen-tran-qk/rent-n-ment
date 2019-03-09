@@ -4,51 +4,59 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header color="custom">
-  <ion-navbar>
+<ion-header>
+  <ion-navbar color="white">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Profile</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+
+<ion-content class="bg-img">
   <ion-card>
-    <ion-avatar>
-      <img [src]="mediaProvider.mediaFilePath + ('profile' | getUser | async| thumbnail | async)">
-    </ion-avatar>
-    <ion-item>
-      <ion-card-content>
+    <ion-row padding>
+      <!-- Avatar -->
+      <ion-col>
+        <ion-row>
+          <img class="avatar" [src]="mediaProvider.mediaFilePath + ('profile' | getUser | async| thumbnail: 'medium' | async)">
+        </ion-row>
 
-        <ion-card-title text-center="">username:
-          {{mediaProvider.user?.username}}
-        </ion-card-title>
 
-        <ion-card-content text-center="">fullName:
-          {{ mediaProvider.user?.full_name}}
-        </ion-card-content>
+      </ion-col>
 
-        <p text-center="">Email:
-          {{ mediaProvider.user?.email}}
-        </p>
-      </ion-card-content>
-    </ion-item>
-  </ion-card>
-  <button ion-button (click)="openAddProductPage()">
-    Add a product for rent
-  </button>
-  <ion-item *ngFor="let pic of picArray | async">
-    <ion-grid>
-      <ion-row>
+      <ion-col col-8>
+        <h3 class="profile-name"  text-center="">{{mediaProvider.user?.username}}</h3>
+
+        <h4 text-center>{{ mediaProvider.user?.full_name}}</h4>
+
+        <p text-center>{{ mediaProvider.user?.email}}</p>
+
+        <!-- Edit/follow button -->
         <ion-col>
-          <ion-thumbnail>
-            <img [src]="this.mediaProvider.mediaFilePath + (pic.file_id | thumbnail: 'medium' | async)"
-                 [alt]="pic.title" (click)="showFile(pic.file_id)"><br>
-            <button ion-button><ion-icon name="create" (click)="modifyFile(pic.file_id)"></ion-icon></button>
-            <button ion-button><ion-icon name="trash" (click)="deleteProduct(pic.file_id)"></ion-icon></button>
-          </ion-thumbnail>
+          <button class="edit-button" (click)="goEditProfile()">Edit your profile</button>
         </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
+      </ion-col>
+
+    </ion-row>
+  </ion-card>
+
+
+  <button ion-button block (click)="openAddProductPage()">Add a product</button>
+
+
+  <ion-grid *ngFor="let pic of picArray | async">
+    <ion-row>
+      <ion-col>
+        <ion-thumbnail *ngFor="let pic of picArray | async">
+          <img [src]="this.mediaProvider.mediaFilePath + (pic.file_id | thumbnail: 'medium' | async)"
+               [alt]="pic.title" (click)="showFile(pic.file_id)"><br>
+          <button class="myBtn" ion-button ><ion-icon name="create" (click)="modifyFile(pic.file_id)"></ion-icon></button>
+          <button class="myBtn" ion-button  color="danger"><ion-icon name="trash" (click)="deleteProduct(pic.file_id)"></ion-icon></button>
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>

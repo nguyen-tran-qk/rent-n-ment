@@ -22,6 +22,7 @@ import { RegisterLoginPage } from '../pages/register-login/register-login';
 import { LoadingProvider } from '../providers/loading/loading';
 import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 
 
 
@@ -36,6 +37,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     UserPage,
     AddProductPage,
     ModifyPage,
+    EditProfilePage,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     UserPage,
     AddProductPage,
     ModifyPage,
+    EditProfilePage,
   ],
   providers: [
     StatusBar,

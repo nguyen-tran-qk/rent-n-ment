@@ -7,6 +7,7 @@ import { Media } from '../../interfaces/interface';
 import { AddProductPage } from '../add-product/add-product';
 import { ModifyPage } from '../modify/modify';
 import { ProductProvider } from '../../providers/product/product';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 
 /**
  * Generated class for the LogoutPage page.
@@ -40,9 +41,9 @@ export class UserPage {
 
   doDelete(id) {
     this.productProvider.deleteProduct(id)
-      .subscribe(() => {
-        this.getMyFiles();
-      });
+    .subscribe(() => {
+      this.getMyFiles();
+    });
   }
 
   deleteProduct(id) {
@@ -78,5 +79,9 @@ export class UserPage {
     localStorage.clear();
     this.mediaProvider.loggedIn = false;
     this.navCtrl.push(HomePage).catch();
+  }
+
+  goEditProfile(){
+    this.navCtrl.push(EditProfilePage).catch();
   }
 }

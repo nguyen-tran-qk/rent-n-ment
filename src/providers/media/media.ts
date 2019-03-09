@@ -92,4 +92,11 @@ export class MediaProvider {
     };
     return this.http.put(this.mediaApi + 'media/' + id, data, setting);
   }
+
+  updateUserInfo(data, token){
+    const setting = {
+      headers: new HttpHeaders().set('x-access-token', token),
+    };
+    return this.http.put(this.mediaApi + 'users/', data, setting);
+  }
 }
