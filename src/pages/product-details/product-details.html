@@ -15,7 +15,7 @@
     activeColor = "#ffea00"
     defaultColor = "#b0bec5"
     readonly="true"
-    [rating]="3.5">
+    [rating]="rating">
   </ionic3-star-rating>
   <div class="product-image" [style.background-image]="'url(' + product.image + ')'"></div>
   <div>
@@ -24,12 +24,18 @@
   </div>
   <p class="product-description">{{ product.description }}</p>
   <div class="rate-product">
-    <label>Rate this product</label>
-    <ionic3-star-rating
+    <label>{{isRated ? 'You rated this product:' : 'Rate this product'}}</label>
+    <ionic3-star-rating *ngIf="!isRated"
       activeColor = "#ffea00"
       defaultColor = "#b0bec5"
       readonly="false"
-      [rating]="3.5">
+      [rating]="myRating">
+    </ionic3-star-rating>
+    <ionic3-star-rating *ngIf="isRated"
+      activeColor = "#ffea00"
+      defaultColor = "#b0bec5"
+      readonly="true"
+      [rating]="myRating">
     </ionic3-star-rating>
   </div>
 </ion-content>

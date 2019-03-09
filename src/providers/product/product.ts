@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Product,
+  ProductRating,
 } from '../../interfaces/interface';
 
 /*
@@ -38,5 +39,13 @@ export class ProductProvider {
 
   deleteProduct(id: number) {
     return this.http.delete(this.API + '/media/' + id, this.setting);
+  }
+
+  rateProduct(data: {file_id: number, rating: number}) {
+    return this.http.post<{message: string, rating_id: number, reason?: string}>(this.API + '/ratings', data, this.setting);
+  }
+
+  getRatingsByProduct(file_id: number) {
+    return this.http.get<ProductRating[]>(this.API + '/ratings/file/' + file_id, this.setting);
   }
 }

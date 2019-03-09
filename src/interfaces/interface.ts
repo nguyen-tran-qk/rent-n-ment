@@ -51,3 +51,10 @@ export interface Product extends Media {
   price?: number | string;
   status?: number;
 }
+
+export interface ProductRating {
+  rating_id: number;
+  rating: number;
+  file_id: number;
+  user_id: number;
+}
