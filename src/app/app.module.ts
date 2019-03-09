@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { StarRatingModule } from 'ionic3-star-rating';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -34,7 +35,8 @@ import { ModifyPage } from '../pages/modify/modify';
     HttpClientModule,
     PipesModule,
     PinchZoomModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    StarRatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

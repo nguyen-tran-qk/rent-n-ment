@@ -14,3 +14,19 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600');
+
+ion-app {
+  font-family: 'Montserrat', "Roboto", "Helvetica Neue", sans-serif !important;
+}
+
+ion-header {
+  &.header::after {
+    content: none;
+  }
+  ion-navbar {
+    .toolbar-background {
+      background: transparent;
+    }
+  }
+}

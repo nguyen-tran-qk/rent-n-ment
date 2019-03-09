@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
 
-
-
 /**
  * Generated class for the ProductDetailsPage page.
  *
@@ -18,7 +16,11 @@ import { MediaProvider } from '../../providers/media/media';
 export class ProductDetailsPage {
   product;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider: MediaProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public mediaProvider: MediaProvider
+  ) {
     this.product = navParams.data.product;
 
   }
