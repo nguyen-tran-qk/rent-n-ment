@@ -18,6 +18,12 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { ProductProvider } from '../providers/product/product';
 import { AddProductPage } from '../pages/add-product/add-product';
 import { ModifyPage } from '../pages/modify/modify';
+import { RegisterLoginPage } from '../pages/register-login/register-login';
+import { LoadingProvider } from '../providers/loading/loading';
+import { Facebook } from '@ionic-native/facebook';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+
 
 @NgModule({
   declarations: [
@@ -26,6 +32,7 @@ import { ModifyPage } from '../pages/modify/modify';
     ProductsPage,
     ProductDetailsPage,
     LoginRegisterPage,
+    RegisterLoginPage,
     UserPage,
     AddProductPage,
     ModifyPage,
@@ -36,7 +43,8 @@ import { ModifyPage } from '../pages/modify/modify';
     PipesModule,
     PinchZoomModule,
     IonicModule.forRoot(MyApp),
-    StarRatingModule
+    StarRatingModule,
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,6 +53,7 @@ import { ModifyPage } from '../pages/modify/modify';
     ProductsPage,
     ProductDetailsPage,
     LoginRegisterPage,
+    RegisterLoginPage,
     UserPage,
     AddProductPage,
     ModifyPage,
@@ -55,6 +64,9 @@ import { ModifyPage } from '../pages/modify/modify';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MediaProvider,
     ProductProvider,
+    LoadingProvider,
+    Facebook,
+
   ]
 })
 export class AppModule {}
