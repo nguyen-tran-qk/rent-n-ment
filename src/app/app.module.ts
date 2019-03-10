@@ -24,6 +24,8 @@ import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { MenuPage } from '../pages/menu/menu';
+import { MapsPage } from '../pages/maps/maps';
+import { GoogleMapComponent } from '../components/google-map/google-map';
 
 
 
@@ -40,6 +42,8 @@ import { MenuPage } from '../pages/menu/menu';
     ModifyPage,
     EditProfilePage,
     MenuPage,
+    GoogleMapComponent,
+    MapsPage,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,9 @@ import { MenuPage } from '../pages/menu/menu';
     ModifyPage,
     EditProfilePage,
     MenuPage,
+    MapsPage,
   ],
+
   providers: [
     StatusBar,
     SplashScreen,
