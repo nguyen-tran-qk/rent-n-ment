@@ -7,12 +7,14 @@ import { HomePage } from '../pages/home/home';
 import { LoginRegisterPage } from '../pages/login-register/login-register';
 import { MediaProvider } from '../providers/media/media';
 import { UserPage } from '../pages/user/user';
+import { MenuPage } from '../pages/menu/menu';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = HomePage;
+  rootPage: any = MenuPage;
   pages: {title: string, component: any}[];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private mediaProvider: MediaProvider) {

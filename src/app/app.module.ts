@@ -23,6 +23,7 @@ import { LoadingProvider } from '../providers/loading/loading';
 import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { MenuPage } from '../pages/menu/menu';
 
 
 
@@ -38,6 +39,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
     AddProductPage,
     ModifyPage,
     EditProfilePage,
+    MenuPage,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
     AddProductPage,
     ModifyPage,
     EditProfilePage,
+    MenuPage,
   ],
   providers: [
     StatusBar,
