@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   Product,
   ProductRating,
+  ProductComment
 } from '../../interfaces/interface';
 
 /*
@@ -47,5 +48,13 @@ export class ProductProvider {
 
   getRatingsByProduct(file_id: number) {
     return this.http.get<ProductRating[]>(this.API + '/ratings/file/' + file_id, this.setting);
+  }
+
+  addProductComment(data: {file_id: number, comment: string}) {
+    return this.http.post<{message: string, comment_id: number}>(this.API + '/comments', data, this.setting);
+  }
+
+  getProductComments(file_id: number) {
+    return this.http.get<ProductComment[]>(this.API + '/comments/file/' + file_id, this.setting);
   }
 }

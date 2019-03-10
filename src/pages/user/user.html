@@ -19,7 +19,7 @@
       <!-- Avatar -->
       <ion-col>
         <ion-row>
-          <img class="avatar" [src]="mediaProvider.mediaFilePath + ('profile' | getUser | async| thumbnail: 'medium' | async)">
+          <img class="avatar" [src]="'profile' | getUser | async | thumbnail: 'medium' | async">
         </ion-row>
 
 
@@ -49,7 +49,7 @@
     <ion-row>
       <ion-col>
         <ion-thumbnail *ngFor="let pic of picArray | async">
-          <img [src]="this.mediaProvider.mediaFilePath + (pic.file_id | thumbnail: 'medium' | async)"
+          <img [src]="this.pic.file_id | thumbnail: 'medium' | async"
                [alt]="pic.title" (click)="showFile(pic.file_id)"><br>
           <button class="myBtn" ion-button ><ion-icon name="create" (click)="modifyFile(pic.file_id)"></ion-icon></button>
           <button class="myBtn" ion-button  color="danger"><ion-icon name="trash" (click)="deleteProduct(pic.file_id)"></ion-icon></button>

@@ -25,23 +25,26 @@ export class ThumbnailPipe implements PipeTransform {
   async transform(id: number, ...args) {
     // pure version
     return new Promise((resolve, reject) => {
-      this.mediaProvider.getSingleMedia(id).subscribe((response: Media) => {
-        switch (args[0]) {
-          case 'large':
-            resolve(response.thumbnails.w640);
-            break;
-          case 'medium':
-            resolve(response.thumbnails.w320);
-            break;
-          case 'screenshot':
-            resolve(response.screenshot);
-            break;
+      if (id) {
+        this.mediaProvider.getSingleMedia(id).subscribe((response: Media) => {
+          switch (args[0]) {
+            case 'large':
+              resolve(this.mediaProvider.mediaFilePath + response.thumbnails.w640);
+              break;
+            case 'medium':
+              resolve(this.mediaProvider.mediaFilePath + response.thumbnails.w320);
+              break;
+            case 'screenshot':
+              resolve(this.mediaProvider.mediaFilePath + response.screenshot);
+              break;
 
-          default:
-            resolve(response.thumbnails.w160);
-        }
-      });
-
+            default:
+              resolve(this.mediaProvider.mediaFilePath + response.thumbnails.w160);
+          }
+        });
+      } else {
+        resolve('/assets/imgs/avatar-placeholder.png');
+      }
     });
   }
 }

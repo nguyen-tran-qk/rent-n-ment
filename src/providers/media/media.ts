@@ -99,4 +99,11 @@ export class MediaProvider {
     };
     return this.http.put(this.mediaApi + 'users/', data, setting);
   }
+
+  getUserById(user_id: number) {
+    const setting = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+    };
+    return this.http.get<User>(this.mediaApi + 'users/' + user_id, setting);
+  }
 }

@@ -20,7 +20,7 @@
   <div class="product-image" [style.background-image]="'url(' + product.image + ')'"></div>
   <div>
     <div class="product-price">€ {{ product.price | number: 0 }}</div>
-    <button ion-button class="contact-owner">Get contact</button>
+    <button ion-button class="contact-owner"><a [href]="'mailto:' + productOwner.email">Ask for details</a></button>
   </div>
   <p class="product-description">{{ product.description }}</p>
   <div class="rate-product">
@@ -37,6 +37,35 @@
       readonly="true"
       [rating]="myRating">
     </ionic3-star-rating>
+  </div>
+  <ion-card class="product-owner">
+    <ion-card-header>
+      This product is brought to you by:
+    </ion-card-header>
+    <ion-card-content>
+      <div class="product-owner-info">
+        <img class="avatar" [src]="'profile' | getUser | async | thumbnail: 'small' | async" />
+        <div class="user-details">{{ (productOwner | async)?.full_name }}</div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <h6>Comments</h6>
+  <div class="comments-section">
+    <div>
+      <textarea class="my-comment" placeholder="What do you think about this product?" rows="2" [(ngModel)]="myComment"></textarea>
+      <button ion-button raised type="button" (click)="addComment()">Send</button>
+    </div>
+    <ion-list class="comments-list">
+      <ion-item *ngFor="let comment of comments | sort: 'comment'" class="comment">
+        <ion-avatar item-start>
+          <img class="avatar" [src]="comment.user_id | getUserAvatar | async | thumbnail: 'small' | async" />
+        </ion-avatar>
+        <div class="comment-right">
+          <div class="name">{{ comment.full_name || comment.username }}</div>
+          <div class="text">{{ comment.comment }}</div>
+        </div>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
 

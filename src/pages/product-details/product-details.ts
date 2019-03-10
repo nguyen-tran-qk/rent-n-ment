@@ -3,7 +3,8 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
 import { Events } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
-import { Product } from '../../interfaces/interface';
+import { Product, User, ProductComment } from '../../interfaces/interface';
+import { Observable } from 'rxjs';
 
 /**
  * Generated class for the ProductDetailsPage page.
@@ -21,6 +22,9 @@ export class ProductDetailsPage {
   rating = 0;
   myRating = 0;
   isRated = false;
+  productOwner: Observable<User>;
+  comments: ProductComment[] = [];
+  myComment: string;
 
   constructor(
     public navCtrl: NavController,
@@ -39,7 +43,13 @@ export class ProductDetailsPage {
 
     // get product's rating
     this.getProductRatings();
-  }
+
+    // get product owner's info
+    this.productOwner = this.mediaProvider.getUserById(this.product.user_id);
+
+    // get product's comments
+    this.getProductComments();
+  };
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductDetailsPage');
@@ -56,6 +66,17 @@ export class ProductDetailsPage {
           return prev + curr.rating;
         }, 0) / data.length);
       }
+    });
+  }
+
+  getProductComments() {
+    this.comments = [];
+    this.productProvider.getProductComments(this.product.file_id).subscribe(data => {
+      data.map(item => {
+        this.mediaProvider.getUserById(item.user_id).subscribe(user => {
+          this.comments.push(Object.assign(item, user));
+        });
+      });
     });
   }
 
@@ -77,6 +98,17 @@ export class ProductDetailsPage {
         toast.present();
       }
     });
+  }
+
+  addComment() {
+    if (this.myComment && this.myComment.length) {
+      this.productProvider.addProductComment({ file_id: this.product.file_id, comment: this.myComment }).subscribe(data => {
+        if (data.comment_id) {
+          this.myComment = '';
+          this.getProductComments();
+        }
+      });
+    }
   }
 
   visitUsersPage() {

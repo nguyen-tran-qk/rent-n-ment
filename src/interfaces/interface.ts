@@ -58,3 +58,10 @@ export interface ProductRating {
   file_id: number;
   user_id: number;
 }
+
+export interface ProductComment extends User {
+  comment_id: number;
+  comment: string;
+  time_added: string;
+  file_id: number;
+}
