@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 declare var google;
+
 /**
  * Generated class for the GoogleMapComponent component.
  *
@@ -16,7 +17,7 @@ declare var google;
 export class GoogleMapComponent {
 
   @ViewChild('map') mapElement;
-  map: any;
+  map: any = null;
   lat: any = 40;
   lng: any = 45;
 
@@ -30,26 +31,27 @@ export class GoogleMapComponent {
   }
 
 
-  getCurrentLocation() {
-   /*  this.geoLocation.getCurrentPosition().then((resp) => {
-      this.lat = resp.coords.latitude;
-      this.lng = resp.coords.longitude;
-      console.log(this.lat, this.lng);
-    }).catch((error) => {
-      console.log('Error getting location', error);
+  getCurrentLocation(){
+    /*  list of coordinates are retrieved from users locaiton when they upload their items or update their profile*/
+
+    let coordinates1 = new google.maps.LatLng(60.2, 24.8);
+    let coordinates2 = new google.maps.LatLng(60.6, 24.7);
+
+    let mapOption: google.maps.MapOptions = {
+      center: coordinates1,
+      zoom: 10,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
+    /*each marker represents one user considering multiple item can be uploaded by same user from same location*/
+    let marker1: google.maps.Marker = new google.maps.Marker({
+      map: this.map,
+      position: coordinates1,
     });
-*/
-    /*marking geolocation of user*/
-        let coordinates = new google.maps.LatLng(60.2, 24.8);
-        let mapOptions: google.maps.MapOptions = {
-          center: coordinates,
-          zoom: 10,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        let marker: google.maps.Marker = new google.maps.Marker({
-          map: this.map,
-          position: coordinates,
-        })
-      }
+
+    let marker2: google.maps.Marker = new google.maps.Marker({
+      map: this.map,
+      position: coordinates2,
+    })
+  }
 }
