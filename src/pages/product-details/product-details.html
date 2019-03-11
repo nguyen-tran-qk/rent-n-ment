@@ -12,8 +12,8 @@
 <ion-content>
   <div class="product-title">{{ product.title }}</div>
   <ionic3-star-rating
-    activeColor = "#ffea00"
-    defaultColor = "#b0bec5"
+    activeColor="#ffea00"
+    defaultColor="#b0bec5"
     readonly="true"
     [rating]="rating">
   </ionic3-star-rating>
@@ -26,16 +26,16 @@
   <div class="rate-product">
     <label>{{isRated ? 'You rated this product:' : 'Rate this product'}}</label>
     <ionic3-star-rating *ngIf="!isRated"
-      activeColor = "#ffea00"
-      defaultColor = "#b0bec5"
-      readonly="false"
-      [rating]="myRating">
+                        activeColor="#ffea00"
+                        defaultColor="#b0bec5"
+                        readonly="false"
+                        [rating]="myRating">
     </ionic3-star-rating>
     <ionic3-star-rating *ngIf="isRated"
-      activeColor = "#ffea00"
-      defaultColor = "#b0bec5"
-      readonly="true"
-      [rating]="myRating">
+                        activeColor="#ffea00"
+                        defaultColor="#b0bec5"
+                        readonly="true"
+                        [rating]="myRating">
     </ionic3-star-rating>
   </div>
   <ion-card class="product-owner">
@@ -44,21 +44,27 @@
     </ion-card-header>
     <ion-card-content>
       <div class="product-owner-info">
-        <img class="avatar" [src]="'profile' | getUser | async | thumbnail: 'small' | async" />
+        <img class="avatar" [src]="'profile' | getUser | async | thumbnail: 'small' | async"/>
         <div class="user-details">{{ (productOwner | async)?.full_name }}</div>
       </div>
     </ion-card-content>
   </ion-card>
+
+  <ion-card class="map">
+      <google-map></google-map>
+  </ion-card>
+
   <h6>Comments</h6>
   <div class="comments-section">
     <div>
-      <textarea class="my-comment" placeholder="What do you think about this product?" rows="2" [(ngModel)]="myComment"></textarea>
+      <textarea class="my-comment" placeholder="What do you think about this product?" rows="2"
+                [(ngModel)]="myComment"></textarea>
       <button ion-button raised type="button" (click)="addComment()">Send</button>
     </div>
     <ion-list class="comments-list">
       <ion-item *ngFor="let comment of comments | sort: 'comment'" class="comment">
         <ion-avatar item-start>
-          <img class="avatar" [src]="comment.user_id | getUserAvatar | async | thumbnail: 'small' | async" />
+          <img class="avatar" [src]="comment.user_id | getUserAvatar | async | thumbnail: 'small' | async"/>
         </ion-avatar>
         <div class="comment-right">
           <div class="name">{{ comment.full_name || comment.username }}</div>

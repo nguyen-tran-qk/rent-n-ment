@@ -44,6 +44,7 @@ page-product-details {
         color: $white;
       }
     }
+
     .rate-product {
       > label {
         font-weight: 600;
@@ -85,6 +86,17 @@ page-product-details {
         }
       }
     }
+
+    ion-card.map {
+      height: 200px;
+      margin: 10px 0;
+      width: 100%;
+      padding: 0;
+      zoom: 0.7;
+      vertical-align: center;
+
+    }
+
     .comments-section {
       margin-bottom: 16px;
       textarea.my-comment {

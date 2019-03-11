@@ -27,14 +27,13 @@ export class GoogleMapComponent {
 
   ngOnInit() {
     /*getting geolocaton of user*/
-    this.getCurrentLocation();
+   this.getMarker();
   }
 
 
-  getCurrentLocation(){
-    /*  list of coordinates are retrieved from users locaiton when they upload their items or update their profile*/
+  getMarker() {
 
-    let coordinates1 = new google.maps.LatLng(60.2, 24.8);
+    let coordinates1 = new google.maps.LatLng(60, 24);
     let coordinates2 = new google.maps.LatLng(60.6, 24.7);
 
     let mapOption: google.maps.MapOptions = {
@@ -43,7 +42,7 @@ export class GoogleMapComponent {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
-    /*each marker represents one user considering multiple item can be uploaded by same user from same location*/
+
     let marker1: google.maps.Marker = new google.maps.Marker({
       map: this.map,
       position: coordinates1,
@@ -52,6 +51,6 @@ export class GoogleMapComponent {
     let marker2: google.maps.Marker = new google.maps.Marker({
       map: this.map,
       position: coordinates2,
-    })
+    });
   }
 }
