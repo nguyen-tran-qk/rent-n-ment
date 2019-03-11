@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
@@ -15,13 +15,13 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 })
 export class MapsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
+
+  constructor(public geoLocation: Geolocation) {
   }
 
   ionViewDidLoad() {
-
+   // this.getCurrentLocation();
   }
-
-
-
 }
