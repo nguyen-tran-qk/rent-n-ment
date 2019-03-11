@@ -1,3 +1,4 @@
+/// <reference types="@types/googlemaps" />
 import { Component, ViewChild } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
