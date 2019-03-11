@@ -68,8 +68,7 @@ export class UserPage {
   }
 
   modifyFile(id) {
-    this.navCtrl.push(ModifyPage, { fileId: id }).catch();
-
+    this.navCtrl.push(AddProductPage, { fileId: id }).catch();
   }
 
   openAddProductPage() {

@@ -6,12 +6,12 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Add your new product</ion-title>
+    <ion-title>{{ editMode ? 'Edit product' : 'Add your new product' }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <form novalidate (ngSubmit)="addProduct()" #f="ngForm">
+  <form novalidate (ngSubmit)="submit()" #f="ngForm">
     <div>
       <input id="imageInput" type="file" accept=".jpg, .jpeg, .png, .mp4" (change)="getImage($event)" hidden />
       <button ion-button type="button" (click)="browseImage()">Upload product image</button>
@@ -20,7 +20,7 @@
     <div>
       <ion-item>
         <ion-label>Product category</ion-label>
-        <ion-select [(ngModel)]="model.category" name="category" [selectOptions]="selectOptions">
+        <ion-select [(ngModel)]="model.category" name="category" [selectOptions]="selectOptions" disabled="{{ editMode }}">
           <ion-option *ngFor="let category of categories" [value]="category.key">{{ category.name }}</ion-option>
         </ion-select>
       </ion-item>
@@ -28,10 +28,22 @@
     <div>
       <ion-item>
         <ion-label>Select your purpose</ion-label>
-        <ion-select [(ngModel)]="model.purpose" name="purpose" [selectOptions]="purposeSelectOptions">
+        <ion-select [(ngModel)]="model.purpose" name="purpose" [selectOptions]="purposeSelectOptions" disabled="{{ editMode }}">
           <ion-option value='rentnmend.purpose.rent'>Rent</ion-option>
           <ion-option value='rentnmend.purpose.mend'>Mend</ion-option>
           <ion-option value='rentnmend.purpose.sale'>Sale</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div *ngIf="editMode">
+      <ion-item>
+        <ion-label>Update product status</ion-label>
+        <ion-select [(ngModel)]="model.status" name="status" [selectOptions]="statusSelectOptions">
+          <ion-option value='-1' *ngIf="model.purpose === 'rentnmend.purpose.sale'">Sold</ion-option>
+          <ion-option value='0'>Unavailable</ion-option>
+          <ion-option value='1'>Available</ion-option>
+          <ion-option value='2' *ngIf="model.purpose === 'rentnmend.purpose.rent'">Renting</ion-option>
+          <ion-option value='3' *ngIf="model.purpose === 'rentnmend.purpose.mend'">Mending</ion-option>
         </ion-select>
       </ion-item>
     </div>
@@ -51,7 +63,7 @@
       <p *ngIf="price.errors?.min">Price must be at least 1 EUR</p>
     </div>
     <div>
-      <button ion-button color="primary" block type="submit" [disabled]="f.invalid || !productImage">Submit</button>
+      <button ion-button color="primary" block type="submit" [disabled]="f.invalid || !productImagePreview">Submit</button>
     </div>
   </form>
 </ion-content>

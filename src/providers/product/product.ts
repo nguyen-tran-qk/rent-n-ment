@@ -21,9 +21,11 @@ export class ProductProvider {
 
   constructor(public http: HttpClient) {
     console.log('Hello ProductProvider Provider');
-    this.setting = {
-      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
-    };
+    if (localStorage.getItem('token')) {
+      this.setting = {
+        headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+      };
+    }
   }
 
   getProductByCategory(categoryName: string) {
@@ -56,5 +58,17 @@ export class ProductProvider {
 
   getProductComments(file_id: number) {
     return this.http.get<ProductComment[]>(this.API + '/comments/file/' + file_id, this.setting);
+  }
+
+  getTagsByProduct(file_id: number) {
+    return this.http.get<{tag_id: number, file_id: number, tag: string}[]>(this.API + '/tags/file/' + file_id, this.setting);
+  }
+
+  updateProduct(file_id: number, data?: { title: string, description: string }) {
+    return this.http.put<{message: string}>(this.API + '/media/' + file_id, data || {}, this.setting);
+  }
+
+  deleteTag(tag_id: number) {
+    return this.http.delete<{message: string}>(this.API + '/tags/' + tag_id, this.setting);
   }
 }

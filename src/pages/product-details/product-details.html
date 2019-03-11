@@ -17,13 +17,14 @@
     readonly="true"
     [rating]="rating">
   </ionic3-star-rating>
+  <ion-badge color="{{ product.status | productStatusColor }}">{{ product.status | productStatus }}</ion-badge>
   <div class="product-image" [style.background-image]="'url(' + product.image + ')'"></div>
   <div>
     <div class="product-price">€ {{ product.price | number: 0 }}</div>
-    <button ion-button class="contact-owner"><a [href]="'mailto:' + productOwner.email">Ask for details</a></button>
+    <button ion-button class="contact-owner" *ngIf="mediaProvider.loggedIn"><a [href]="'mailto:' + productOwner.email">Ask for details</a></button>
   </div>
   <p class="product-description">{{ product.description }}</p>
-  <div class="rate-product">
+  <div class="rate-product" *ngIf="mediaProvider.loggedIn">
     <label>{{isRated ? 'You rated this product:' : 'Rate this product'}}</label>
     <ionic3-star-rating *ngIf="!isRated"
       activeColor = "#ffea00"
@@ -38,7 +39,7 @@
       [rating]="myRating">
     </ionic3-star-rating>
   </div>
-  <ion-card class="product-owner">
+  <ion-card class="product-owner" *ngIf="mediaProvider.loggedIn">
     <ion-card-header>
       This product is brought to you by:
     </ion-card-header>
@@ -49,9 +50,19 @@
       </div>
     </ion-card-content>
   </ion-card>
+  <ion-card class="product-owner" *ngIf="!mediaProvider.loggedIn">
+    <ion-card-header>
+      Looking for more details and owner's contact?
+    </ion-card-header>
+    <ion-card-content>
+      <div class="product-owner-info">
+        <div class="user-details">Please <a (click)="navCtrl.parent.select(2)">login</a></div>
+      </div>
+    </ion-card-content>
+  </ion-card>
   <h6>Comments</h6>
   <div class="comments-section">
-    <div>
+    <div *ngIf="mediaProvider.loggedIn">
       <textarea class="my-comment" placeholder="What do you think about this product?" rows="2" [(ngModel)]="myComment"></textarea>
       <button ion-button raised type="button" (click)="addComment()">Send</button>
     </div>

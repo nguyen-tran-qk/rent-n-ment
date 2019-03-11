@@ -8,6 +8,6 @@
   <ion-tab [root]="loginpage" tabIcon="exit" *ngIf="!mediaProvider.loggedIn"></ion-tab>
   <ion-tab [root]="homepage" tabIcon="home"></ion-tab>
   <ion-tab [root]="userpage" tabIcon="person" *ngIf="mediaProvider.loggedIn"></ion-tab>
-  <ion-tab [root]="upload" tabIcon="cloud-upload" *ngIf="mediaProvider.loggedIn"></ion-tab>
+  <ion-tab [root]="upload" tabIcon="add" *ngIf="mediaProvider.loggedIn"></ion-tab>
   <ion-tab [root]="mapspage" tabIcon="map"></ion-tab>
 </ion-tabs>

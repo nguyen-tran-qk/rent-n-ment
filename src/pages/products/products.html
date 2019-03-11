@@ -39,7 +39,7 @@
           <p> € {{ product.price | number: 0 }}</p>
         </ion-col>
         <ion-col>
-          <ion-badge color="secondary">{{ product.status | productStatus }}</ion-badge>
+          <ion-badge color="{{ product.status | productStatusColor }}">{{ product.status | productStatus }}</ion-badge>
         </ion-col>
       </ion-row>
     </ion-item>
