@@ -50,7 +50,7 @@
         <img class="avatar" [src]="'profile' | getUser | async | thumbnail: 'small' | async"/>
         <div class="user-details">{{ (productOwner | async)?.full_name }}</div>
       </div>
-      <google-map [location]="location" *ngIf="location"></google-map>
+     <google-map [location]="location" *ngIf="location"></google-map>
     </ion-card-content>
   </ion-card>
   <ion-card class="product-owner" *ngIf="!mediaProvider.loggedIn">

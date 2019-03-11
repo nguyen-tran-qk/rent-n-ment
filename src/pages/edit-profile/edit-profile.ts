@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
+import {
+  LoadingController,
+  NavController,
+  NavParams,
+  ToastController,
+} from 'ionic-angular';
 import { User, UserLocation } from '../../interfaces/interface';
 import { MediaProvider } from '../../providers/media/media';
 import { LocationProvider } from '../../providers/location/location';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Chooser } from '@ionic-native/chooser';
 
 /**
  * Generated class for the EditProfilePage page.
@@ -17,7 +23,8 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-
+  file: File;
+  myBlob;
   user: User;
   userInfo: any = {
     username: '',
@@ -36,6 +43,7 @@ export class EditProfilePage {
     private geolocation: Geolocation,
     private locationProvider: LocationProvider,
     public toastCtrl: ToastController,
+    public chooser: Chooser,
   ) {
   }
 
@@ -49,7 +57,10 @@ export class EditProfilePage {
     });
 
     this.geolocation.getCurrentPosition().then((res) => {
-      this.myLocation = { latitude: res.coords.latitude, longitude: res.coords.longitude };
+      this.myLocation = {
+        latitude: res.coords.latitude,
+        longitude: res.coords.longitude,
+      };
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -78,15 +89,47 @@ export class EditProfilePage {
 
   saveLocation() {
     let data = this.locationProvider.locationsData;
-    data[this.user.user_id] = { latitude: this.myLocation.latitude, longitude: this.myLocation.longitude };
+    data[this.user.user_id] = {
+      latitude: this.myLocation.latitude,
+      longitude: this.myLocation.longitude,
+    };
     this.locationProvider.updateLocations(data).then(_ => {
       const toast = this.toastCtrl.create({
         message: 'Your location is saved and will be displayed to customers in all your products.',
-        duration: 3000
+        duration: 3000,
       });
       toast.present();
     });
   }
+
+  choosePicture() {
+
+    this.chooser.getFile('image/*, video/*, audio/*').then(file => {
+      console.log(file ? file.name : 'canceled');
+      console.log(file);
+      this.myBlob = new Blob([file.data], { type: file.mediaType });
+
+    }).catch((error: any) => console.error(error));
+
+    const fd = new FormData();
+    fd.append('file', this.myBlob);
+    this.mediaProvider.uploadAMediaFile(fd).subscribe((resp: any) => {
+      console.log('resp: ' + resp.file_id);
+
+      const tagData = {
+        file_id: resp.file_id,
+        tag: 'profile',
+      };
+      this.mediaProvider.postAtag(tagData).subscribe(response => {
+      });
+      setTimeout(() => {
+          this.navCtrl.pop().catch();
+        },
+        2000,
+      );
+    });
+  }
 }
+
 
 

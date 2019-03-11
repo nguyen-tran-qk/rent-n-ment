@@ -20,6 +20,7 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/chooser": "^4.20.0",
     "@ionic-native/core": "^4.20.0",
     "@ionic-native/facebook": "^4.5.2",
     "@ionic-native/geolocation": "^4.20.0",
@@ -30,6 +31,7 @@
     "@types/google-maps": "^3.2.0",
     "angularfire2": "^5.0.0-rc.3",
     "cordova-android": "7.1.4",
+    "cordova-plugin-chooser": "1.2.5",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "4.2.1",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -65,7 +67,8 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-chooser": {}
     },
     "platforms": [
       "android"

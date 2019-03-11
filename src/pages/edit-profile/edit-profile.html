@@ -12,6 +12,16 @@
 
 <ion-content padding>
   <form (ngSubmit)="change()">
+
+    <ion-col >
+      <ion-row>
+        <img class="avatar" [src]="('profile' | getUser | async | thumbnail | async)">
+      </ion-row>
+      <ion-row>
+        <button class="changePic" ion-button  type="button" (click)="choosePicture()"  accept="image/*, video/*, audio/*">Change Pic</button>
+      </ion-row>
+    </ion-col>
+
     <ion-item>
       <ion-label stacked color="primary">User name</ion-label>
       <ion-input name="username" placeholder="User name" [(ngModel)]="userInfo.username"></ion-input>

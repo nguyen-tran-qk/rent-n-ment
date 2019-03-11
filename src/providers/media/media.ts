@@ -111,6 +111,18 @@ export class MediaProvider {
   swapLog(){
     this.loggedIn = !this.loggedIn;
   }
+  uploadAMediaFile(data: any) {
+    const httpOptions = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+    };
+    return this.http.post<LoginResponse>(this.mediaApi + 'media', data, httpOptions);
+  }
 
+  postAtag(data){
+    const httpOptions = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token')),
+    };
+    return this.http.post(this.mediaApi + 'tags',data , httpOptions);
+  }
 
 }

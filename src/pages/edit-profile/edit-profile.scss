@@ -2,12 +2,25 @@ page-edit-profile {
   ion-buttons {
     margin-top: 16px;
   }
+
   form {
     ion-item.item {
       padding: 0 8px;
     }
   }
+
   google-map #map {
     height: 250px;
+  }
+
+  .avatar {
+    margin: auto;
+    border-radius: 100%;
+  }
+
+  .changePic {
+    margin: auto;
+    background: transparent;
+    color: #007aff;
   }
 }

@@ -27,6 +27,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MapsPage } from '../pages/maps/maps';
 import { GoogleMapComponent } from '../components/google-map/google-map';
 import { LocationProvider } from '../providers/location/location';
+import { Chooser } from '@ionic-native/chooser';
 
 
 
@@ -80,6 +81,7 @@ import { LocationProvider } from '../providers/location/location';
     LoadingProvider,
     Facebook,
     LocationProvider,
+    Chooser,
 
   ]
 })
