@@ -24,8 +24,10 @@ import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { MenuPage } from '../pages/menu/menu';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { MapsPage } from '../pages/maps/maps';
 import { GoogleMapComponent } from '../components/google-map/google-map';
+
 
 
 
@@ -73,7 +75,8 @@ import { GoogleMapComponent } from '../components/google-map/google-map';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Geolocation,
+   { provide: ErrorHandler, useClass: IonicErrorHandler },
     MediaProvider,
     ProductProvider,
     LoadingProvider,

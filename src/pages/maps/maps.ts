@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 /**
  * Generated class for the MapsPage page.
@@ -18,7 +19,9 @@ export class MapsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MapsPage');
+
   }
+
+
 
 }
