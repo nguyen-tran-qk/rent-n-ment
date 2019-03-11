@@ -5,3 +5,11 @@ Final project of course WBMA at Metropolia UAS
 1. `npm install`
 
 2. `ionic serve`
+
+###Google map
+3. `npm install @types/google-maps --save`
+
+4.  `ionic g component GoogleMap`
+
+### Geolocation
+5. 
