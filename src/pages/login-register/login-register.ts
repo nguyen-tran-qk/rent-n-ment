@@ -168,8 +168,8 @@ export class LoginRegisterPage {
 
         localStorage.setItem('userId', response.user.user_id.toString());
 
-        // move to the home page (use navCtrl)
-        this.navCtrl.push(UserPage).catch();
+        // move to the home page
+        location.reload();
       },
       error => {
         console.log(error);

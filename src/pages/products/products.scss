@@ -3,20 +3,27 @@ page-products {
     h2.product-title {
       font-weight: bold;
     }
-    ion-thumbnail {
-      img {
-        width: auto;
-        margin: 0 auto;
+    ion-item {
+      height: 115px;
+      ion-thumbnail {
+        .product-image {
+          width: 100%;
+          height: 90px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          margin: 0 auto;
+        }
       }
-    }
-    .product-description {
-      height: 36px;
-      width: 90%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 14px;
-      span {
-        white-space: pre-wrap;
+      .product-description {
+        height: 36px;
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        span {
+          white-space: pre-wrap;
+        }
       }
     }
   }

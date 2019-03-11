@@ -11,6 +11,8 @@ Final project of course WBMA at Metropolia UAS
 3. `npm install @types/google-maps --save`
 
 4.  `ionic g component GoogleMap`
+### cant find name "google" error fix
+5. `npm install @types/googlemaps --save-dev`
 
 ### Geolocation
-5. 
+6. 

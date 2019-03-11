@@ -109,19 +109,16 @@
 /* Tab design */
 .tabbar {
   .tab-button {
-    background-color: $black-3;
-    border-left: 1px solid $black;
-    border-right: 1px solid $black;
+    background-color: #387ef5;
     color: $white;
     .tab-button-text {
       color: $white;
       font-size: 16px;
       font-family: $times-new-roman-bold;
     }
-  }
-  .tab-button[aria-selected=true] {
-    background-color: $green;
-    border-color: transparent;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 /* End */

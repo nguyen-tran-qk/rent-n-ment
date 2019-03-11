@@ -79,7 +79,8 @@ export class UserPage {
   logout() {
     localStorage.clear();
     this.mediaProvider.loggedIn = false;
-    this.navCtrl.setRoot(MenuPage).catch();
+    this.mediaProvider.user = null;
+    location.reload();
   }
 
   goEditProfile(){
