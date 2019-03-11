@@ -5,6 +5,7 @@ import { UserPage } from '../user/user';
 import { AddProductPage } from '../add-product/add-product';
 import { MediaProvider } from '../../providers/media/media';
 import { MapsPage } from '../maps/maps';
+import { LoginRegisterPage } from '../login-register/login-register';
 
 /**
  * Generated class for the MenuPage page.
@@ -20,9 +21,14 @@ import { MapsPage } from '../maps/maps';
 export class MenuPage {
 
   homepage = HomePage;
-  userpage= UserPage;
+  userpage = UserPage;
   upload = AddProductPage;
   mapspage = MapsPage;
+  loginpage = LoginRegisterPage;
+
+  loggedIn = false;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public  mediaProvider: MediaProvider) {
   }
 
@@ -30,4 +36,7 @@ export class MenuPage {
     console.log('ionViewDidLoad MenuPage');
   }
 
+  swaplog(){
+    this.loggedIn = !this.loggedIn;
+  }
 }

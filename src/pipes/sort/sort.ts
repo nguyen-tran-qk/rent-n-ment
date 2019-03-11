@@ -14,7 +14,7 @@ export class SortPipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(value: [0], ...args) {
+  transform(value, ...args) {
     switch (args[0]) {
       case 'comment':
         return value.sort((a: ProductComment, b: ProductComment) => a.comment_id - b.comment_id);

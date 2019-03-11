@@ -31,14 +31,14 @@ export class GoogleMapComponent {
 
 
   getCurrentLocation() {
-   /* this.geoLocation.getCurrentPosition().then((resp) => {
+   /*  this.geoLocation.getCurrentPosition().then((resp) => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
       console.log(this.lat, this.lng);
     }).catch((error) => {
       console.log('Error getting location', error);
-    });*/
-
+    });
+*/
     /*marking geolocation of user*/
         let coordinates = new google.maps.LatLng(60.2, 24.8);
         let mapOptions: google.maps.MapOptions = {
