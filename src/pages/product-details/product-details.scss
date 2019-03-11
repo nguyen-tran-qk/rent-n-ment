@@ -76,7 +76,6 @@ page-product-details {
         font-size: 14px;
       }
       ion-card-content {
-        margin: 0 8px;
         img.avatar {
           width: 48px;
           height: 48px;
@@ -90,6 +89,12 @@ page-product-details {
           font-weight: 500;
           margin-left: 24px;
           vertical-align: middle;
+        }
+        google-map {
+          #map {
+            margin-top: 16px;
+            height: 200px;
+          }
         }
       }
     }

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, NavParams } from 'ionic-angular';
-import { User } from '../../interfaces/interface';
+import { LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { User, UserLocation } from '../../interfaces/interface';
 import { MediaProvider } from '../../providers/media/media';
+import { LocationProvider } from '../../providers/location/location';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the EditProfilePage page.
@@ -25,24 +27,32 @@ export class EditProfilePage {
   loading = this.loadingCtrl.create({
     content: 'Saving, please wait...',
   });
+  myLocation: UserLocation;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     public mediaProvider: MediaProvider,
     public loadingCtrl: LoadingController,
+    private geolocation: Geolocation,
+    private locationProvider: LocationProvider,
+    public toastCtrl: ToastController,
   ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
-    this.mediaProvider.getCurrentUser().subscribe(
-      (data: User) => {
-        console.log(data);
-        this.user = data;
-        this.userInfo.username = data.username;
-        this.userInfo.fullName = data.full_name;
-        this.userInfo.email = data.email;
-      });
+    this.mediaProvider.getCurrentUser().subscribe((data: User) => {
+      this.user = data;
+      this.userInfo.username = data.username;
+      this.userInfo.fullName = data.full_name;
+      this.userInfo.email = data.email;
+    });
+
+    this.geolocation.getCurrentPosition().then((res) => {
+      this.myLocation = { latitude: res.coords.latitude, longitude: res.coords.longitude };
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
   change() {
@@ -63,6 +73,18 @@ export class EditProfilePage {
     }, (err) => {
       this.loading.dismiss().catch();
       console.log(err);
+    });
+  }
+
+  saveLocation() {
+    let data = this.locationProvider.locationsData;
+    data[this.user.user_id] = { latitude: this.myLocation.latitude, longitude: this.myLocation.longitude };
+    this.locationProvider.updateLocations(data).then(_ => {
+      const toast = this.toastCtrl.create({
+        message: 'Your location is saved and will be displayed to customers in all your products.',
+        duration: 3000
+      });
+      toast.present();
     });
   }
 }

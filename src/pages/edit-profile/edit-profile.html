@@ -12,25 +12,26 @@
 
 <ion-content padding>
   <form (ngSubmit)="change()">
-
     <ion-item>
       <ion-label stacked color="primary">User name</ion-label>
       <ion-input name="username" placeholder="User name" [(ngModel)]="userInfo.username"></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label stacked color="primary">Full name</ion-label>
       <ion-input name="fullname" placeholder="full name" [(ngModel)]="userInfo.fullName"></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label color="primary" stacked>Email</ion-label>
       <ion-input type="email" name="email" placeholder="Email" [(ngModel)]="userInfo.email"></ion-input>
     </ion-item>
-
     <ion-buttons>
       <button type="submit" ion-button block>Save</button>
     </ion-buttons>
   </form>
-
+  <br/>
+  <h5>My location:</h5>
+  <google-map [location]="myLocation"></google-map>
+  <div padding>
+    <button ion-button block (click)="saveLocation()">Save my current location</button>
+  </div>
 </ion-content>

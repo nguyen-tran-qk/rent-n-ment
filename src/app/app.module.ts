@@ -17,16 +17,16 @@ import { PipesModule } from '../pipes/pipes.module';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { ProductProvider } from '../providers/product/product';
 import { AddProductPage } from '../pages/add-product/add-product';
-import { ModifyPage } from '../pages/modify/modify';
 import { RegisterLoginPage } from '../pages/register-login/register-login';
 import { LoadingProvider } from '../providers/loading/loading';
 import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { MenuPage } from '../pages/menu/menu';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
 import { MapsPage } from '../pages/maps/maps';
 import { GoogleMapComponent } from '../components/google-map/google-map';
+import { LocationProvider } from '../providers/location/location';
 
 
 
@@ -41,7 +41,6 @@ import { GoogleMapComponent } from '../components/google-map/google-map';
     RegisterLoginPage,
     UserPage,
     AddProductPage,
-    ModifyPage,
     EditProfilePage,
     MenuPage,
     GoogleMapComponent,
@@ -66,7 +65,6 @@ import { GoogleMapComponent } from '../components/google-map/google-map';
     RegisterLoginPage,
     UserPage,
     AddProductPage,
-    ModifyPage,
     EditProfilePage,
     MenuPage,
     MapsPage,
@@ -81,6 +79,7 @@ import { GoogleMapComponent } from '../components/google-map/google-map';
     ProductProvider,
     LoadingProvider,
     Facebook,
+    LocationProvider,
 
   ]
 })

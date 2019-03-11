@@ -3,8 +3,9 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
 import { Events } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
-import { Product, User, ProductComment } from '../../interfaces/interface';
+import { Product, User, ProductComment, UserLocation } from '../../interfaces/interface';
 import { Observable } from 'rxjs';
+import { LocationProvider } from '../../providers/location/location';
 
 /**
  * Generated class for the ProductDetailsPage page.
@@ -25,6 +26,7 @@ export class ProductDetailsPage {
   productOwner: Observable<User>;
   comments: ProductComment[] = [];
   myComment: string;
+  location: UserLocation;
 
   constructor(
     public navCtrl: NavController,
@@ -32,7 +34,8 @@ export class ProductDetailsPage {
     public mediaProvider: MediaProvider,
     public events: Events,
     public productProvider: ProductProvider,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private locationProvider: LocationProvider,
   ) {
     this.product = navParams.data.product;
   }
@@ -49,10 +52,24 @@ export class ProductDetailsPage {
 
     // get product's comments
     this.getProductComments();
+
+    this.productOwner.subscribe(data => {
+      this.getProductLocation(data.user_id);
+    });
   };
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductDetailsPage');
+  }
+
+  getProductLocation(user_id: number) {
+    if (user_id) {
+      this.locationProvider.getAllLocations().then(data => {
+        if (data[user_id]) {
+          this.location = data[user_id];
+        }
+      });
+    }
   }
 
   getProductRatings() {

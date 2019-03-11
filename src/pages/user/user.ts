@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { MediaProvider } from '../../providers/media/media';
-import { HomePage } from '../home/home';
 import { Observable } from 'rxjs';
 import { Media } from '../../interfaces/interface';
 import { AddProductPage } from '../add-product/add-product';
-import { ModifyPage } from '../modify/modify';
 import { ProductProvider } from '../../providers/product/product';
 import { EditProfilePage } from '../edit-profile/edit-profile';
-import { MenuPage } from '../menu/menu';
 
 /**
  * Generated class for the LogoutPage page.
@@ -72,7 +69,7 @@ export class UserPage {
   }
 
   openAddProductPage() {
-    this.navCtrl.parent.select(1);
+    this.navCtrl.parent.select(3);
   }
 
   logout() {

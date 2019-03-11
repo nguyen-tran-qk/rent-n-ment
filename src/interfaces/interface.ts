@@ -65,3 +65,8 @@ export interface ProductComment extends User {
   time_added: string;
   file_id: number;
 }
+
+export interface UserLocation {
+  latitude: number;
+  longitude: number;
+}

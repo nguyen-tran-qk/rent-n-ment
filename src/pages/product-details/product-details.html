@@ -26,17 +26,19 @@
   <p class="product-description">{{ product.description }}</p>
   <div class="rate-product" *ngIf="mediaProvider.loggedIn">
     <label>{{isRated ? 'You rated this product:' : 'Rate this product'}}</label>
-    <ionic3-star-rating *ngIf="!isRated"
-                        activeColor="#ffea00"
-                        defaultColor="#b0bec5"
-                        readonly="false"
-                        [rating]="myRating">
+    <ionic3-star-rating
+      *ngIf="!isRated"
+      activeColor="#ffea00"
+      defaultColor="#b0bec5"
+      readonly="false"
+      [rating]="myRating">
     </ionic3-star-rating>
-    <ionic3-star-rating *ngIf="isRated"
-                        activeColor="#ffea00"
-                        defaultColor="#b0bec5"
-                        readonly="true"
-                        [rating]="myRating">
+    <ionic3-star-rating
+      *ngIf="isRated"
+      activeColor="#ffea00"
+      defaultColor="#b0bec5"
+      readonly="true"
+      [rating]="myRating">
     </ionic3-star-rating>
   </div>
   <ion-card class="product-owner" *ngIf="mediaProvider.loggedIn">
@@ -48,6 +50,7 @@
         <img class="avatar" [src]="'profile' | getUser | async | thumbnail: 'small' | async"/>
         <div class="user-details">{{ (productOwner | async)?.full_name }}</div>
       </div>
+      <google-map [location]="location" *ngIf="location"></google-map>
     </ion-card-content>
   </ion-card>
   <ion-card class="product-owner" *ngIf="!mediaProvider.loggedIn">
@@ -61,15 +64,11 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card class="map">
-      <google-map></google-map>
-  </ion-card>
-
   <h6>Comments</h6>
   <div class="comments-section">
     <div>
       <textarea class="my-comment" placeholder="What do you think about this product?" rows="2"
-                [(ngModel)]="myComment"></textarea>
+        [(ngModel)]="myComment"></textarea>
       <button ion-button raised type="button" (click)="addComment()">Send</button>
     </div>
     <ion-list class="comments-list">
