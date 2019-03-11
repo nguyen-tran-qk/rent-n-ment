@@ -8,6 +8,7 @@ import { AddProductPage } from '../add-product/add-product';
 import { ModifyPage } from '../modify/modify';
 import { ProductProvider } from '../../providers/product/product';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { MenuPage } from '../menu/menu';
 
 /**
  * Generated class for the LogoutPage page.
@@ -72,13 +73,13 @@ export class UserPage {
   }
 
   openAddProductPage() {
-    this.navCtrl.push(AddProductPage).catch();
+    this.navCtrl.parent.select(1);
   }
 
   logout() {
     localStorage.clear();
     this.mediaProvider.loggedIn = false;
-    this.navCtrl.push(HomePage).catch();
+    this.navCtrl.setRoot(MenuPage).catch();
   }
 
   goEditProfile(){

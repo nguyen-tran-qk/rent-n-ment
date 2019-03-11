@@ -21,7 +21,7 @@ export class GetUserPipe implements PipeTransform {
       this.mediaProvider.getFilesByTag(tag).subscribe((responses: Media[]) => {
         let result = null;
         responses.forEach((response: Media) => {
-          if (response.user_id === this.mediaProvider.user.user_id) {
+          if (response && response.user_id === this.mediaProvider.user.user_id) {
             result = response.file_id;
           }
         });

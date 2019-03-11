@@ -14,14 +14,25 @@ page-user {
     padding-top: 4px;
   }
 
-  /* Profile edit button */
-  .edit-button {
-    background: #ffffff;
-    border: 1px solid #ccc;
-    font-size: 13px;
-    font-weight: bold;
-    border-radius: 3px;
-    width: 90%;
+  .actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Profile edit button */
+    .edit-button {
+      background: #ffffff;
+      border: 1px solid #ccc;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 3px;
+      width: 70%;
+      margin-bottom: 8px;
+      padding: 8px;
+      &:active {
+        border-color: #dce2ed;
+      }
+    }
   }
 
   .profile-name{
@@ -30,14 +41,43 @@ page-user {
     font-weight: bold;
   }
 
-  .edit-button:active {
-    border-color: #dce2ed;
+  .my-products {
+    margin: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    h6 {
+      margin: 10px 0;
+    }
+    button[ion-button] {
+      font-size: 12px;
+      height: 30px;
+    }
   }
 
-
-  .myBtn{
-    width: 150px;
-    height: 50px;
-
+  .products-list {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-start;
+    padding: 0 8px;
+    .product {
+      width: calc(30% - 8px);
+      margin: 8px 8px 16px 8px;
+      .product-image {
+        width: auto;
+        height: 88px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .product-actions {
+        width: 100%;
+        text-align: center;
+        .myBtn{
+          width: 32px;
+          height: 32px;
+          display: inline-block;
+        }
+      }
+    }
   }
 }

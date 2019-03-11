@@ -1,3 +1,10 @@
 page-edit-profile {
-
+  ion-buttons {
+    margin-top: 16px;
+  }
+  form {
+    ion-item.item {
+      padding: 0 8px;
+    }
+  }
 }

@@ -34,12 +34,6 @@
   @include calc('width', '100% + 32px');
 }
 
-.bg-img {
-  background-image: url(../assets/imgs/bg.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
 .border-bottom-grey {
   border-bottom: 1px solid rgba($black, .2);
 }

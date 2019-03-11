@@ -6,9 +6,6 @@
 -->
 <ion-header>
   <ion-navbar color="white">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Profile</ion-title>
   </ion-navbar>
 </ion-header>
@@ -21,42 +18,29 @@
         <ion-row>
           <img class="avatar" [src]="'profile' | getUser | async | thumbnail: 'medium' | async">
         </ion-row>
-
-
       </ion-col>
-
       <ion-col col-8>
-        <h3 class="profile-name"  text-center="">{{mediaProvider.user?.username}}</h3>
-
-        <h4 text-center>{{ mediaProvider.user?.full_name}}</h4>
-
+        <h3 class="profile-name"  text-center="">{{mediaProvider.user?.full_name || mediaProvider.user?.username}}</h3>
         <p text-center>{{ mediaProvider.user?.email}}</p>
-
         <!-- Edit/follow button -->
-        <ion-col>
+        <ion-col class="actions">
           <button class="edit-button" (click)="goEditProfile()">Edit your profile</button>
+          <button class="edit-button" (click)="logout()">Logout</button>
         </ion-col>
       </ion-col>
-
     </ion-row>
   </ion-card>
-
-
-  <button ion-button block (click)="openAddProductPage()">Add a product</button>
-
-
-  <ion-grid *ngFor="let pic of picArray | async">
-    <ion-row>
-      <ion-col>
-        <ion-thumbnail *ngFor="let pic of picArray | async">
-          <img [src]="this.pic.file_id | thumbnail: 'medium' | async"
-               [alt]="pic.title" (click)="showFile(pic.file_id)"><br>
-          <button class="myBtn" ion-button ><ion-icon name="create" (click)="modifyFile(pic.file_id)"></ion-icon></button>
-          <button class="myBtn" ion-button  color="danger"><ion-icon name="trash" (click)="deleteProduct(pic.file_id)"></ion-icon></button>
-        </ion-thumbnail>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-
+  <div class="my-products">
+    <h6>My products</h6>
+    <button ion-button (click)="openAddProductPage()">Add a product</button>
+  </div>
+  <div class="products-list">
+    <div *ngFor="let pic of picArray | async" class="product">
+      <div class="product-image" [style.background-image]="'url(' + (this.pic.file_id | thumbnail: 'medium' | async) + ')'"></div>
+      <div class="product-actions">
+        <button class="myBtn" ion-button ><ion-icon name="create" (click)="modifyFile(pic.file_id)"></ion-icon></button>
+        <button class="myBtn" ion-button  color="danger"><ion-icon name="trash" (click)="deleteProduct(pic.file_id)"></ion-icon></button>
+      </div>
+    </div>
+  </div>
 </ion-content>

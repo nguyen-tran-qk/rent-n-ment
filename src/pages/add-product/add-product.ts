@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { PRODUCT_STATUS, categories } from '../../constants';
 import { ProductProvider } from '../../providers/product/product';
 import { UserPage } from '../user/user';
+import { MenuPage } from '../menu/menu';
 
 class AddProductForm {
   constructor(
@@ -82,7 +83,7 @@ export class AddProductPage {
               };
               this.productProvider.addProductToCategory(purposeTagData).subscribe(res => {
                 if (res.tag_id) {
-                  this.navCtrl.setRoot(UserPage);
+                  this.navCtrl.parent.select(2);
                 }
               });
             }

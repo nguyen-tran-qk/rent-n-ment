@@ -1,4 +1,9 @@
 page-login-register {
+  ion-content {
+    .scroll-content {
+      background-color: #f8f8f8;
+    }
+  }
   .socialLogin {
     float: left;
     width: 100%;
@@ -57,7 +62,7 @@ page-login-register {
   }
   .form-bottom-text label,
   a {
-    color: $white;
+    color: $black;
   }
   // a[disabled],
   // button[disabled],
@@ -76,7 +81,7 @@ page-login-register {
     text-align: center;
   }
   .sepretor-or p {
-    color: $white  ;
+    color: $black  ;
     font-size: 16px;
     text-transform: lowercase;
   }

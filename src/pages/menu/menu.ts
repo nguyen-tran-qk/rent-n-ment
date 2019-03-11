@@ -23,7 +23,9 @@ export class MenuPage {
   userpage= UserPage;
   upload = AddProductPage;
   mapspage = MapsPage;
+  selectedIndex = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public  mediaProvider: MediaProvider) {
+    this.selectedIndex = navParams.get('openTab') || 0;
   }
 
   ionViewDidLoad() {
