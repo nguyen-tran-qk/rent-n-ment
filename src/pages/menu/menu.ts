@@ -32,7 +32,7 @@ export class MenuPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.mediaProvider.loggedIn);
+    console.log('ionViewDidLoad MenuPage');
   }
 
 }
