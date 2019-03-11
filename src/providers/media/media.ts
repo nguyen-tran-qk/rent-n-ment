@@ -5,6 +5,7 @@ import {
   RegisterResponse,
   User,
 } from '../../interfaces/interface';
+import { MenuPage } from '../../pages/menu/menu';
 
 /*
   Generated class for the MediaProvider provider.
@@ -93,7 +94,7 @@ export class MediaProvider {
     return this.http.put(this.mediaApi + 'media/' + id, data, setting);
   }
 
-  updateUserInfo(data, token){
+  updateUserInfo(data, token) {
     const setting = {
       headers: new HttpHeaders().set('x-access-token', token),
     };
@@ -106,4 +107,10 @@ export class MediaProvider {
     };
     return this.http.get<User>(this.mediaApi + 'users/' + user_id, setting);
   }
+
+  swapLog(){
+    this.loggedIn = !this.loggedIn;
+  }
+
+
 }

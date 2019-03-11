@@ -26,9 +26,6 @@ export class MenuPage {
   mapspage = MapsPage;
   loginpage = LoginRegisterPage;
 
-  loggedIn = false;
-
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public  mediaProvider: MediaProvider) {
   }
 
@@ -36,7 +33,5 @@ export class MenuPage {
     console.log('ionViewDidLoad MenuPage');
   }
 
-  swaplog(){
-    this.loggedIn = !this.loggedIn;
-  }
+
 }

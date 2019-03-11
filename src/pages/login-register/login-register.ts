@@ -22,6 +22,7 @@ import * as firebase from 'firebase';
 import { HomePage } from '../home/home';
 import { Facebook } from '@ionic-native/facebook';
 
+
 /**
  * Generated class for the LoginRegisterPage page.
  *
@@ -38,6 +39,7 @@ export class LoginRegisterPage {
   @ViewChild('username') usernameInput;
   @ViewChild('registerForm') form: any;
 
+  loggedIn = false;
   username: AbstractControl;
 
   password: AbstractControl;
@@ -48,12 +50,10 @@ export class LoginRegisterPage {
 
   userAlert = false;
 
-  authForm : FormGroup;
-
+  authForm: FormGroup;
 
 
   user: any = {};
-
 
 
   constructor(
@@ -83,57 +83,57 @@ export class LoginRegisterPage {
 
   // For Social Login
 
-  socialLogin(isLogin){
-    if (isLogin == "facebook"){
+  socialLogin(isLogin) {
+    if (isLogin == 'facebook') {
       this.loadingProvider.startLoading();
 
       let provider = new firebase.auth.FacebookAuthProvider();
       firebase.auth().signInWithRedirect(provider).then(() => {
         this.loadingProvider.startLoading();
-        firebase.auth().getRedirectResult().then((result)=>{
-          console.log('result',result);
+        firebase.auth().getRedirectResult().then((result) => {
+          console.log('result', result);
           this.moveToHome(result.user);
           this.loadingProvider.stopLoading();
-        }).catch(function(error){
+        }).catch(function (error) {
           this.loadingProvider.stopLoading();
           alert(error.message);
-          console.log('error',error);
-        })
+          console.log('error', error);
+        });
         this.loadingProvider.stopLoading();
-      }).catch(function(error){
+      }).catch(function (error) {
         this.loadingProvider.stopLoading();
         alert(error.message);
-        console.log('error',error);
-      })
+        console.log('error', error);
+      });
       this.loadingProvider.stopLoading();
-    }else if(isLogin == "google"){
+    } else if (isLogin == 'google') {
       this.loadingProvider.startLoading();
       let provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithRedirect(provider).then(() => {
         this.loadingProvider.startLoading();
-        firebase.auth().getRedirectResult().then((result)=>{
-          console.log('result',result);
+        firebase.auth().getRedirectResult().then((result) => {
+          console.log('result', result);
           this.loadingProvider.stopLoading();
           this.moveToHome(result.user);
-        }).catch(function(error){
+        }).catch(function (error) {
           this.loadingProvider.stopLoading();
           alert(error.message);
-          console.log('error',error);
-        })
+          console.log('error', error);
+        });
         this.loadingProvider.stopLoading();
-      }).catch(function(error){
+      }).catch(function (error) {
         this.loadingProvider.stopLoading();
         alert(error.message);
-        console.log('error',error);
-      })
+        console.log('error', error);
+      });
       this.loadingProvider.stopLoading();
-    }else if(isLogin == "twitter"){
+    } else if (isLogin == 'twitter') {
       // this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider())
       // 	.then(res => {
       // 		 this.moveToHome(res);
       // 	})
       // 	.catch(err => console.log('err',err));
-    }else if(isLogin == "github"){
+    } else if (isLogin == 'github') {
       // this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider())
       // 	.then(res => {
       // 		 this.moveToHome(res);
@@ -150,9 +150,9 @@ export class LoginRegisterPage {
 
 
   //Move to Home Page
-  moveToHome(res){
-    console.log('res',res);
-    this.navCtrl.setRoot(HomePage,{res:res});
+  moveToHome(res) {
+    console.log('res', res);
+    this.navCtrl.setRoot(HomePage, {res: res});
   }
 
   login() {
@@ -184,6 +184,10 @@ export class LoginRegisterPage {
       this.passwordtype = 'password';
       this.passeye = 'eye';
     }
+  }
+
+  swapLog() {
+    this.loggedIn = !this.loggedIn;
   }
 
 }
