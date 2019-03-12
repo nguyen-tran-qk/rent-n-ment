@@ -73,7 +73,6 @@ export class GoogleMapComponent {
 
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
 
-
         locationList.forEach(item => {
           let key = data[item];
           let latlng = new google.maps.LatLng(key.latitude, key.longitude);
