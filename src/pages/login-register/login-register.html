@@ -14,11 +14,6 @@
       <img src="assets/imgs/myLogo.png">
     </div>
 
-    <div text-center class="socialLogin" padding>
-      <button ion-button full class="google" (click)="socialLogin('google')"><ion-icon name="logo-google" style="margin-right: 12px;"></ion-icon>Sign in with Google</button>
-      <button ion-button full class="facebook" (click)="socialLogin('facebook')"><ion-icon name="logo-facebook" style="margin-right: 12px;"></ion-icon> Sign in with Facebook</button>
-    </div>
-    <div class="sepretor-or" padding-horizontal> <p>Or</p></div>
     <div padding class="container-bottom">
 
     <form [formGroup]="authForm" (ngSubmit)="login()" #loginForm="ngForm">
