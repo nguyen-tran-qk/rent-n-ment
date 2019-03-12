@@ -2,6 +2,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserLocation } from '../../interfaces/interface';
+import { LocationProvider } from '../../providers/location/location';
 
 declare var google;
 
@@ -19,17 +20,18 @@ export class GoogleMapComponent {
   @Input() location: UserLocation;
   @ViewChild('map') mapElement;
   map: any = null;
-  lat: any = 40;
-  lng: any = 45;
+  center: any;
 
-  constructor(private geoLocation: Geolocation) {
+
+  constructor(private geoLocation: Geolocation, public locationProvider: LocationProvider) {
     console.log('Hello GoogleMapComponent Component');
+
   }
 
-  // ngOnInit() {
-  //   /*getting geolocaton of user*/
-  //  this.getMarker();
-  // }
+  ngOnInit() {
+    //   /*getting geolocaton of user*/
+    this.getMarker();
+  }
 
   ngOnChanges(changes) {
     if (changes.location.currentValue) {
@@ -43,7 +45,7 @@ export class GoogleMapComponent {
       const coordinates = new google.maps.LatLng(coords.latitude, coords.longitude);
       const mapOption: google.maps.MapOptions = {
         center: coordinates,
-        zoom: 10,
+        zoom: 3,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
@@ -55,25 +57,38 @@ export class GoogleMapComponent {
   }
 
   getMarker() {
+    this.locationProvider.getAllLocations().then(data => {
+      let locationList = Object.keys(data);
 
-    let coordinates1 = new google.maps.LatLng(60, 24);
-    let coordinates2 = new google.maps.LatLng(60.6, 24.7);
+      this.geoLocation.getCurrentPosition().then((res) => {
+        this.center = {
+          latitude: res.coords.latitude,
+          longitude: res.coords.longitude,
+        };
+        let mapOption: google.maps.MapOptions = {
+          center: new google.maps.LatLng(this.center.latitude, this.center.longitude),
+          zoom: 10,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
-    let mapOption: google.maps.MapOptions = {
-      center: coordinates1,
-      zoom: 10,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
 
-    let marker1: google.maps.Marker = new google.maps.Marker({
-      map: this.map,
-      position: coordinates1,
+
+        locationList.forEach(item => {
+          let key = data[item];
+          let latlng = new google.maps.LatLng(key.latitude, key.longitude);
+
+          new google.maps.Marker({
+            map: this.map,
+            position: latlng,
+          });
+
+        });
+      });
+    }).catch((err) => {
+      console.log(err);
     });
 
-    let marker2: google.maps.Marker = new google.maps.Marker({
-      map: this.map,
-      position: coordinates2,
-    });
   }
+
 }
