@@ -4,23 +4,7 @@ page-login-register {
       background-color: #f8f8f8;
     }
   }
-  .socialLogin {
-    float: left;
-    width: 100%;
-    text-align: center;
-  }
-  .facebook{
-    background-color: #3b5998;;
-  }
-  .google{
-    background-color: #d13d35;
-  }
-  .github{
-    background-color: #000000;
-  }
-  .twitter{
-    background-color: #728fdb;
-  }
+
   .container-logo {
     display: inline-block;
     width: 100%;
@@ -37,7 +21,7 @@ page-login-register {
   .container-bottom {
     @include inline-flex;
     @include flex-wrap(wrap);
-    @include align-self(flex-end);
+    @include align-self(center);
   }
   .item-inner{
     border-bottom: 0px !important;
