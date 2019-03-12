@@ -34,7 +34,7 @@
     <h6>My products</h6>
     <button ion-button (click)="openAddProductPage()">Add a product</button>
   </div>
-  <div class="products-list" *ngIf="picArray.length">
+  <div class="products-list" *ngIf="picArray && picArray.length">
     <div *ngFor="let pic of picArray" class="product">
       <div class="product-image" [style.background-image]="'url(' + (this.pic.file_id | thumbnail: 'medium' | async) + ')'"></div>
       <div class="product-actions">
