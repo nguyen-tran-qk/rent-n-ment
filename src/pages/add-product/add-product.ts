@@ -93,19 +93,23 @@ export class AddProductPage {
   }
 
   addTagsForProduct(file_id: number) {
-    const postData = {
-      file_id: file_id,
-      tag: this.model.category
-    };
-    this.productProvider.addProductToCategory(postData).subscribe(result => {
-      if (result.tag_id) {
-        const purposeTagData = {
+    this.productProvider.tagProduct(file_id).subscribe(data => {
+      if (data.tag_id) {
+        const postData = {
           file_id: file_id,
-          tag: this.model.purpose
+          tag: this.model.category
         };
-        this.productProvider.addProductToCategory(purposeTagData).subscribe(res => {
-          if (res.tag_id) {
-            this.navCtrl.parent.select(2);
+        this.productProvider.addProductToCategory(postData).subscribe(result => {
+          if (result.tag_id) {
+            const purposeTagData = {
+              file_id: file_id,
+              tag: this.model.purpose
+            };
+            this.productProvider.addProductToCategory(purposeTagData).subscribe(res => {
+              if (res.tag_id) {
+                this.navCtrl.parent.select(2);
+              }
+            });
           }
         });
       }

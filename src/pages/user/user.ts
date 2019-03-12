@@ -20,7 +20,7 @@ import { EditProfilePage } from '../edit-profile/edit-profile';
 })
 export class UserPage {
 
-  picArray: Observable<Media[]>;
+  picArray: Media[] = [];
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
@@ -29,8 +29,13 @@ export class UserPage {
   }
 
   getMyFiles() {
-    this.picArray = this.mediaProvider.getFilesByUser(
-      localStorage.getItem('token'));
+    this.mediaProvider.getFilesByUser(localStorage.getItem('token')).subscribe(data => {
+      this.productProvider.getProductByCategory('rentnmend.products').subscribe(products => {
+        this.picArray = products.filter(product => {
+          return data.find(item => item.user_id === product.user_id);
+        });
+      });
+    });
   }
 
   ionViewDidEnter() {

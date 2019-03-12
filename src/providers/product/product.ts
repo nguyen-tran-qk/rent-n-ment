@@ -71,4 +71,9 @@ export class ProductProvider {
   deleteTag(tag_id: number) {
     return this.http.delete<{message: string}>(this.API + '/tags/' + tag_id, this.setting);
   }
+
+  tagProduct(file_id: number) {
+    const data = { file_id, tag: 'rentnmend.products' }
+    return this.http.post<{ message: string, tag_id: number }>(this.API + '/tags', data, this.setting);
+  }
 }
